@@ -1,0 +1,47 @@
+.navbar {
+    background-color: #2c3e50; /* Dark background for minimalistic look */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for extra look */
+    padding: 10px 20px; /* Padding inside the navbar */
+    display: flex;
+    justify-content: center;
+  }
+  
+  .navbar-list {
+    list-style: none; /* Remove default list styling */
+    display: flex;
+    gap: 140px; /* Increased space between items */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-item {
+    margin: 0;
+  }
+  
+  .navbar-link {
+    text-decoration: none; /* Remove underline from links */
+    color: #ecf0f1; /* Light grey color for text */
+    padding: 15px 20px; /* Increased padding inside the links */
+    border-radius: 5px; /* Rounded corners for links */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+    position: relative; /* Position relative for pseudo-element */
+    font-size: 23px; /* Increase font size */
+    letter-spacing: 1.5px; /* Increase spacing between letters */
+  }
+  
+  .navbar-link:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    left: -15px; /* Position the line to the left of the link */
+    top: 50%;
+    transform: translateY(-50%);
+    height: 60%; /* Height of the vertical line */
+    width: 1px; /* Width of the vertical line */
+    background-color: #ecf0f1; /* Color of the vertical line */
+    z-index: 1; /* Ensure the line is above other elements */
+  }
+  .navbar-link:hover {
+    background-color: #34495e; /* Slightly darker background on hover */
+    color: #ffffff; /* White color on hover */
+  }
