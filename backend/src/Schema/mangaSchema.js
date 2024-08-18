@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+
 const mangaSchema = new mongoose.Schema({
     title: {
         type: String,
