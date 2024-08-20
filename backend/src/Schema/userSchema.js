@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-
 const { mangaSchema } = require('./mangaSchema')
 
 const userSchema = new mongoose.Schema({

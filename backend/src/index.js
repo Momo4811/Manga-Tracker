@@ -1,17 +1,14 @@
-require('dotenv').config({ path: '../mongo.env' })
+const express = require('express');
+const cors = require('cors');
+const routeHandlers = require('./RouteHandlers/routeHandlers');
 
-// Import necessary modules
-const express = require('express')
-const app = express()
-const port = process.env.PORT
+const app = express();
+app.use(cors()); // This enables CORS for all routes
+app.use(express.json());
 
-// Middleware to parse JSON bodies
-app.use(express.json())
+app.use('/', routeHandlers);
 
-// Import and use the router from routeHandlers.js
-const router = require('./routeHandlers')
-app.use('/', router);
-
+const port = process.env.PORT || 4000;
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+  console.log(`Server running on port ${port}`);
+});

@@ -13,18 +13,17 @@ const NavigationBar = () => {
     setSearchText('');
   };
 
-
   const handleSearchSubmit = async () => {
+    const url = `http://localhost:${process.env.REACT_APP_BACKEND_PORT || 4000}/scrape`;
+
     try {
-      const response = await fetch('http://localhost:5000/scrape', {
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ title: searchText }),
       });
-      setSearchText('Bruv');
-
 
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -37,7 +36,6 @@ const NavigationBar = () => {
       console.error('Error:', error);
     }
   };
-
 
   return (
     <Router>
@@ -64,7 +62,6 @@ const NavigationBar = () => {
       <NavigationBarRoutes />
       {searchResults && (
         <div className="search-results">
-          {/* Render search results here */}
           <h2>{searchResults.title}</h2>
           <img src={searchResults.imageLink} alt={searchResults.title} />
           <p>Alternate Titles: {searchResults.alternateTitles}</p>
