@@ -1,48 +1,47 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './NavigationBar.css';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { NavigationBarRoutes } from '../Navigation/NavigationBarRoutes';
 import { SearchBar } from './SearchBar';
 
 const NavigationBar = () => {
   const [searchText, setSearchText] = useState('');
-  const [searchResults, setSearchResults] = useState(null);
+  const navigate = useNavigate();
 
-  const handleClearSearch = () => {
+  function handleClearSearch() {
     setSearchText('');
   };
 
-  const handleSearchSubmit = async () => {
-    const url = `http://localhost:${process.env.REACT_APP_BACKEND_PORT || 4000}/scrape`;
+  const handleSearchSubmit = async (event)=> {
+  event.preventDefault();
 
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ title: searchText }),
-      });
+  const url = `http://localhost:${process.env.PORT || 4000}/scrape`;
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ title: searchText }),
+    });
 
-      const data = await response.json();
-      setSearchResults(data);
-      setSearchText('');
-    } catch (error) {
-      console.error('Error:', error);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
-  };
+
+    const data = await response.json();
+    setSearchText('');
+    navigate('/search-results', { state: { searchResults: data } });
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
 
   return (
-    <Router>
       <nav className="navbar">
         <ul className="navbar-list">
           <li className="navbar-item">
-            <Link to="/" className="navbar-link">Home</Link>
+            <Link to="/home" className="navbar-link">Home</Link>
           </li>
           <li className="navbar-item">
             <Link to="/view-bookmarks" className="navbar-link">View Bookmarks</Link>
@@ -59,18 +58,6 @@ const NavigationBar = () => {
           handleSearchSubmit={handleSearchSubmit} 
         />
       </nav>
-      <NavigationBarRoutes />
-      {searchResults && (
-        <div className="search-results">
-          <h2>{searchResults.title}</h2>
-          <img src={searchResults.imageLink} alt={searchResults.title} />
-          <p>Alternate Titles: {searchResults.alternateTitles}</p>
-          <p>Genres: {searchResults.genres.join(', ')}</p>
-          <p>Latest Chapter: {searchResults.latestChapter.chapterNumber}</p>
-          <p>Release Date: {searchResults.latestChapter.releaseDate}</p>
-        </div>
-      )}
-    </Router>
   );
 };
 

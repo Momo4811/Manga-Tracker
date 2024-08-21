@@ -24,8 +24,10 @@ router.post('/scrape', async (req, res) => {
   }
 
   try {
-    const mangaInformation = await getMangaInformation(mangaTitle);
-    res.json(mangaInformation);
+    const mangasFound = await getMangaInformation(mangaTitle);
+    res.json(mangasFound);
+
+    console.log(mangasFound)
   } catch (error) {
     console.error('Error fetching manga information:', error); // Add this line to log errors
     res.status(500).json({ error: error.message });
