@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { AdvancedSearchFilter } from '../Components/AdvancedSearchFilters';
 import './SearchResultsPage.css'; // Import CSS for styling
-
 const SearchResultItem = ({ result }) => {
   return (
     <div className="search-result-item">
@@ -31,16 +31,30 @@ SearchResultItem.propTypes = {
 const SearchResultsPage = () => {
   const location = useLocation();
   const { searchResults } = location.state || {};
+  const [filteredResults, setFilteredResults] = useState(searchResults);
+
+  const handleFilterChange = (filters) => {
+    const results = searchResults?.filter(result => {
+      return (
+        (filters.keyword === '' || result.title.toLowerCase().includes(filters.keyword.toLowerCase())) &&
+        (filters.genre === '' || result.genres?.includes(filters.genre))
+      );
+    });
+    setFilteredResults(results);
+  };
 
   if (!searchResults) {
     return <div>No search results found.</div>;
   }
 
   return (
-    <div className="search-results">
-      {Object.keys(searchResults).map((key, i) => (
-        <SearchResultItem key={i} result={searchResults[key]} />
-      ))}
+    <div>
+      <AdvancedSearchFilter onFilterChange={handleFilterChange} />
+      <div className="search-results">
+        {Object.keys(filteredResults).map((key, i) => (
+          <SearchResultItem key={i} result={filteredResults[key]} />
+        ))}
+      </div>
     </div>
   );
 };
