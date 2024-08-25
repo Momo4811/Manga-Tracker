@@ -1,248 +1,67 @@
 .panel-advanced-search-tool {
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 4px;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .advanced-search-tool-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .advanced-search-tool-title span {
-    display: flex;
-    align-items: center;
-  }
-  
-  .advanced-search-tool-title i {
-    transition: transform 0.3s ease;
-  }
-  
-  .advanced-search-tool-title.advanced-search-tool-hidden i {
-    transform: rotate(180deg);
-  }
-  
-  .advanced-search-tool-content {
-    display: none;
-  }
-  
-  .advanced-search-tool-label {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .advanced-search-tool-genres-help {
-    margin-bottom: 10px;
-  }
-  
-  .advanced-search-tool-genres-help-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .advanced-search-tool-genres-help-content {
-    font-size: 14px;
-    color: #6c757d;
-    margin-top: 5px;
-  }
-  
-  .advanced-search-tool-genres-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .advanced-search-tool-orderby,
-  .advanced-search-tool-status,
-  .advanced-search-tool-keyword {
-    margin-bottom: 10px;
-  }
-  
-  .advanced-search-tool-orderby-title,
-  .advanced-search-tool-status-title,
-  .advanced-search-tool-keyword-title {
-    font-weight: bold;
-    margin-right: 10px;
-  }
-  
-  .advanced-search-tool-orderby-content,
-  .advanced-search-tool-status-content,
-  .advanced-search-tool-keyword-type,
-  .advanced-search-tool-keyword-content {
-    width: 100%;
-    padding: 5px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-  }
-  
-  .advanced-search-tool-apply {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .advanced-search-tool-apply:hover {
-    background-color: #0056b3;
-  }
-  
-  .advanced-search-tool-link-search {
-    margin-top: 10px;
-  }
-  
-  .advanced-search-tool-link {
-    width: 100%;
-    padding: 5px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    background-color: #e9ecef;
-    color: #495057;
-  }
-  
-  /* Additional styles from the provided snippet */
-  #searchInput {
-    width: 500px;
-    border: solid 1px #dedede;
-    padding: 3px;
-    border-top-right-radius: 6px;
-    border-top-left-radius: 6px;
-    -moz-border-top-right-radius: 6px;
-    -moz-border-top-left-radius: 6px;
-    box-shadow: 0 0 5px #999;
-    border-width: 1px 1px 0;
-    border-style: solid;
-    border-color: #efefef #dedede #dedede;
-    background-color: #fff;
-  }
-  
-  #SearchResult {
-    z-index: 100000;
-    position: absolute;
-    width: 400px;
-    display: none;
-    margin-top: 38px;
-    overflow: hidden;
-    max-height: 410px;
-  }
-  
-  #SearchResult ul {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    max-height: 358px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    background: #fff;
-    float: left;
-  }
-  
-  #SearchResult ul li {
-    padding: 5px;
-    border-top: solid 1px #dedede;
-    height: 58px;
-    color: #000;
-    font-size: 16px;
-    float: left;
-    overflow: hidden;
-    width: calc(100% - 10px);
-  }
-  
-  #SearchResult ul li:hover {
-    cursor: pointer;
-  }
-  
-  #SearchResult ul li.selected {
-    background: #1ba1e2;
-    color: #fff;
-    cursor: pointer;
-  }
-  
-  #SearchResult div#search-footer {
-    width: 100%;
-    min-height: 16px;
-    text-align: center;
-    padding: 5px 0 10px;
-    background-color: #e2e2e2;
-    color: #000;
-    font-size: 14px;
-    float: left;
-  }
-  
-  #SearchResult ul li img.item_image {
-    width: 40px;
-    height: 58px;
-    float: left;
-    margin-right: 5px;
-  }
-  
-  #SearchResult ul li .item_panel_right {
-    float: left;
-    width: calc(100% - 45px);
-  }
-  
-  #SearchResult ul li .item_name {
-    float: left;
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 24px;
-    color: #383838;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: inline-block;
-    width: 100%;
-  }
-  
-  #SearchResult ul li .item_author {
-    float: left;
-    font-style: italic;
-    font-size: 13px;
-    line-height: 17px;
-    color: #383838;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: inline-block;
-    width: 100%;
-  }
-  
-  #SearchResult ul li .item_chapter {
-    float: left;
-    font-size: 14px;
-    line-height: 17px;
-    color: #383838;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: inline-block;
-    width: 100%;
-  }
-  
-  @media (max-width: 990px) {
-    #SearchResult {
-      width: 400px;
-      overflow-y: auto;
-      max-height: 70%;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    #SearchResult {
-      width: 96%;
-    }
-  }
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.advanced-search-tool-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.advanced-search-tool-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.advanced-search-tool-label {
+  font-size: 16px;
+  font-weight: bold;
+}
+.advanced-search-tool-genres-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.advanced-search-tool-genres-list label {
+  display: block;
+  margin: 5px 0;
+}
+
+.advanced-search-tool-orderby,
+.advanced-search-tool-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.advanced-search-tool-orderby-title,
+.advanced-search-tool-status-title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.advanced-search-tool-orderby-content,
+.advanced-search-tool-status-content {
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.hide-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #007bff;
+}
+
+.hide-button i {
+  margin-right: 5px;
+}

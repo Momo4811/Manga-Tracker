@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './AdvancedSearchFilter.css';
 
 const genres = [
   "Action", "Adult", "Adventure", "Comedy", "Cooking", "Doujinshi", "Drama", "Ecchi", "Erotica", 

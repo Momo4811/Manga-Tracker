@@ -11,7 +11,7 @@ const NavigationBarRoutes = () => {
       <Route path="/home" element={<HomePage />} />
       <Route path="/view-bookmarks" element={<ViewBookmarks />} />
       <Route path="/add-bookmark" element={<AddBookmark />} />
-      <Route path="/search-results" element={<SearchResultsPage />} />
+      <Route path="/search/:mangaTitle" element={<SearchResultsPage />} />
   </Routes>
   );
 };

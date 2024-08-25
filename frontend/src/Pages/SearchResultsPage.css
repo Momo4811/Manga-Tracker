@@ -44,3 +44,14 @@
 .search-results-info strong {
   font-weight: bold;
 }
+.error-message {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
