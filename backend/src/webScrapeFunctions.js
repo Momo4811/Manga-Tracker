@@ -17,7 +17,7 @@ const findMangaURLS = async (mangaTitle) => {
   const mangasFound = $('a.item-img.bookmark_check');
 
   if (!mangasFound.length) {
-    throw new Error(`No results found on search of: ${mangaTitle}`);
+    return []; // Return an empty array instead of throwing an error
   }
 
   const mangaURLS = mangasFound.map((i, el) => $(el).attr('href')).get();
@@ -26,6 +26,10 @@ const findMangaURLS = async (mangaTitle) => {
 
 const getMangaInformation = async (mangaTitle) => {
   const mangaURLS = await findMangaURLS(mangaTitle);
+  
+  if (mangaURLS.length === 0) {
+    return { message: `No results found for: ${mangaTitle}` }; // Return a message if no results are found
+  }
 
   const mangaPromises = mangaURLS.map(async (mangaURL) => {
     const response = await fetchURL(mangaURL);

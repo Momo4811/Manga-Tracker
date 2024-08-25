@@ -1,6 +1,7 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { AdvancedSearchFilter } from '../Components/AdvancedSearchFilters';
 import './SearchResultsPage.css'; // Import CSS for styling
 
 const SearchResultItem = ({ result }) => {
@@ -29,18 +30,59 @@ SearchResultItem.propTypes = {
 };
 
 const SearchResultsPage = () => {
-  const location = useLocation();
-  const { searchResults } = location.state || {};
+  const { mangaTitle } = useParams();
+  const [searchResults, setSearchResults] = useState([]);
+  const [error, setError] = useState(null);
 
-  if (!searchResults) {
+  useEffect(() => {
+    const fetchResults = async () => {
+      const url = `http://localhost:${process.env.PORT || 4000}/search/${mangaTitle}`;
+
+      try {
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.error || 'Network response was not ok');
+        }
+        setSearchResults(data);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    fetchResults();
+  }, [mangaTitle]);
+
+  if (error) {
+    return <div className="error-message">{error}</div>;
+  }
+
+  if (!searchResults.length) {
     return <div>No search results found.</div>;
   }
 
   return (
-    <div className="search-results">
-      {Object.keys(searchResults).map((key, i) => (
-        <SearchResultItem key={i} result={searchResults[key]} />
-      ))}
+    <div>
+      <AdvancedSearchFilter onFilterChange={(filters) => {
+        const results = searchResults.filter(result => {
+          return (
+            (filters.keyword === '' || result.title.toLowerCase().includes(filters.keyword.toLowerCase())) &&
+            (filters.genre === '' || result.genres?.includes(filters.genre))
+          );
+        });
+        setSearchResults(results);
+      }} />
+      <div className="search-results">
+        {searchResults.map((result, index) => (
+          <SearchResultItem key={index} result={result} />
+        ))}
+      </div>
     </div>
   );
 };

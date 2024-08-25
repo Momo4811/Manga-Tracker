@@ -1,0 +1,24 @@
+.genre-checkbox {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .genre-checkbox.unchecked {
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  .genre-checkbox.include {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .genre-checkbox.exclude {
+    background-color: #dc3545;
+    color: white;
+  }
