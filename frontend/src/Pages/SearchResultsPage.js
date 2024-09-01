@@ -4,21 +4,33 @@ import PropTypes from 'prop-types';
 import { AdvancedSearchFilter } from '../Components/AdvancedSearchFilters';
 import './SearchResultsPage.css'; // Import CSS for styling
 
-const SearchResultItem = ({ result }) => {
+const SearchResultItem = ({ result: manga }) => {
+
+  const handleBookmark = () => {
+    // Add your bookmark logic here
+    console.log(`Bookmarking manga: ${manga.title}`);
+  };
+
   return (
     <div className="search-result-item">
-      <h2 className="search-results-title">{result.title || 'No title available'}</h2>
+      <a className="search-result-link" href={manga.mangaURL}>
+        <h2 className="search-results-title">{manga.title || 'No title available'}</h2>
+      </a>
       <div className="search-results-content">
+        <a href={manga.mangaURL}>
         <img 
           className="search-results-image" 
-          src={result.imageLink || 'default-image.jpg'} 
-          alt={result.title || 'No title available'} 
+          src={manga.imageLink || 'default-image.jpg'} 
+          alt={manga.title || 'No title available'} 
         />
+        </a>
         <div className="search-results-info">
-          <p><strong>Alternate Titles:</strong> {result.alternateTitles || 'N/A'}</p>
-          <p><strong>Genres:</strong> {result.genres?.join(', ') || 'N/A'}</p>
-          <p><strong>Latest Chapter:</strong> {result.latestChapter?.chapterNumber || 'N/A'}</p>
-          <p><strong>Release Date:</strong> {result.latestChapter?.releaseDate || 'N/A'}</p>
+          <p><strong>Alternate Titles:</strong> {manga.alternateTitles || 'N/A'}</p>
+          <p><strong>Genres:</strong> {manga.genres?.join(', ') || 'N/A'}</p>
+          <p><strong>Status:</strong> {manga.mangaStatus || 'N/A'}</p>
+          <p><strong>Latest Chapter:</strong> {manga.latestChapter?.chapterNumber || 'N/A'}</p>
+          <p><strong>Release Date:</strong> {manga.latestChapter?.releaseDate || 'N/A'}</p>
+          <button className="bookmark-button" onClick={handleBookmark}>Bookmark</button>
         </div>
       </div>
     </div>
@@ -35,6 +47,7 @@ const SearchResultsPage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    setError(null);
     const fetchResults = async () => {
       const url = `http://localhost:${process.env.PORT || 4000}/search/${mangaTitle}`;
 
@@ -63,21 +76,9 @@ const SearchResultsPage = () => {
     return <div className="error-message">{error}</div>;
   }
 
-  if (!searchResults.length) {
-    return <div>No search results found.</div>;
-  }
-
   return (
     <div>
-      <AdvancedSearchFilter onFilterChange={(filters) => {
-        const results = searchResults.filter(result => {
-          return (
-            (filters.keyword === '' || result.title.toLowerCase().includes(filters.keyword.toLowerCase())) &&
-            (filters.genre === '' || result.genres?.includes(filters.genre))
-          );
-        });
-        setSearchResults(results);
-      }} />
+      <AdvancedSearchFilter />
       <div className="search-results">
         {searchResults.map((result, index) => (
           <SearchResultItem key={index} result={result} />

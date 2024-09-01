@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './AdvancedSearchFilter.css';
 
-const genres = [
+const mangaGenres = [
   "Action", "Adult", "Adventure", "Comedy", "Cooking", "Doujinshi", "Drama", "Ecchi", "Erotica", 
   "Fantasy", "Gender bender", "Harem", "Historical", "Horror", "Isekai", "Josei", "Manhua", 
   "Manhwa", "Martial arts", "Mature", "Mecha", "Medical", "Mystery", "One shot", "Pornographic", 
@@ -9,9 +9,28 @@ const genres = [
   "Shounen ai", "Slice of life", "Smut", "Sports", "Supernatural", "Tragedy", "Webtoons", "Yaoi", "Yuri"
 ];
 
+const mangaGenresIndexes = [2, 3, 4, 6, 7, 9,
+                            10, 11, 48, 12, 13, 14,
+                            15, 16, 45, 17, 44, 43,
+                            19, 20, 21, 22, 24, 25,
+                            47, 26, 27, 28, 29, 30,
+                            31, 32, 33, 34, 35, 36,
+                            37, 38, 40, 41, 39, 42];
+
+const mangaGenresMap = mangaGenres.reduce((acc, genre, index) => {
+  acc[genre] = mangaGenresIndexes[index];
+  return acc;
+}, {});
+
+const mangaGenresChecked = mangaGenres.reduce((acc, genre) => {
+  acc[genre] = "unchecked";
+  return acc;
+}, {});
+
 const AdvancedSearchFilter = ({ filters = { genres: [], keyword: '', sortBy: 'latest', status: 'all', keywordType: 'everything' }, handleInputChange, onFilterChange }) => {
   const [isContentVisible, setIsContentVisible] = useState(false);
   const [isHelpContentVisible, setIsHelpContentVisible] = useState(false);
+  const [genres, setGenres] = useState({mangaGenresChecked});
 
   const toggleContentVisibility = () => {
     setIsContentVisible(!isContentVisible);
@@ -21,6 +40,22 @@ const AdvancedSearchFilter = ({ filters = { genres: [], keyword: '', sortBy: 'la
     setIsHelpContentVisible(!isHelpContentVisible);
   };
 
+  const handleGenreChange = (genre) => {
+    setGenres((prevGenres) => {
+      let newStatus;
+      if (prevGenres[genre] === 'unchecked') newStatus = 'include';
+      else if (prevGenres[genre] === 'include') newStatus = 'exclude';
+      else newStatus = 'unchecked';
+  
+      return {
+        ...prevGenres,
+        [genre]: newStatus,
+      };
+    });
+  };
+  
+
+
   return (
     <div className="panel-advanced-search-tool">
       <p className={`advanced-search-tool-title ${isContentVisible ? '' : 'advanced-search-tool-hidden'} a-h`} onClick={toggleContentVisibility}>
@@ -28,14 +63,14 @@ const AdvancedSearchFilter = ({ filters = { genres: [], keyword: '', sortBy: 'la
         <i className={isContentVisible ? 'icon-up' : 'icon-down'}></i>
       </p>
       <div className="advanced-search-tool-content" style={{ display: isContentVisible ? 'block' : 'none' }}>
-        <button className="hide-button" onClick={toggleContentVisibility}>
+        {/* <button className="hide-button" onClick={toggleContentVisibility}>
           <i className={isContentVisible ? 'icon-hide' : 'icon-show'}></i> {isContentVisible ? 'Hide' : 'Show'}
-        </button>
+        </button> */}
         <p className="advanced-search-tool-label">Genres:</p>
         <div className="advanced-search-tool-genres-help">
-          <span className="advanced-search-tool-genres-help-title a-h" onClick={toggleHelpContentVisibility}>
+          {/* <span className="advanced-search-tool-genres-help-title a-h" onClick={toggleHelpContentVisibility}>
             <span className="advanced-search-tool-include-span">
-              <i className="advanced-search-tool-include-icon"></i>Include genre
+              <i className="advanced-search-tool-include-icon"></i>Include genre / 
             </span>
             <span className="advanced-search-tool-exclude-span">
               <i className="advanced-search-tool-exclude-icon"></i>Exclude genre
@@ -43,25 +78,21 @@ const AdvancedSearchFilter = ({ filters = { genres: [], keyword: '', sortBy: 'la
             <span className="advanced-search-tool-help-icon">
               <i></i>&nbsp;
             </span>
-          </span>
+          </span> */}
           <p className="advanced-search-tool-genres-help-content" style={{ display: isHelpContentVisible ? 'block' : 'none' }}>
             <i className="advanced-search-tool-include-icon"></i><b>Include genre:</b> If you include Historical, it will filter only mangas with Historical genre. (You can include multiple genres).<br />
             <i className="advanced-search-tool-exclude-icon"></i><b>Exclude genre:</b> If you include Comedy, Romance but exclude Ecchi, it will filter all mangas with Comedy and Romance but Ecchi.
           </p>
         </div>
         <div className="advanced-search-tool-genres-list">
-          {genres.map((genre) => (
-            <label key={genre}>
-              <input
-                type="checkbox"
-                name="genres"
-                value={genre}
-                checked={filters.genres.includes(genre)}
-                onChange={handleInputChange}
-              />
-              {genre}
-            </label>
-          ))}
+        {mangaGenres.map((genre) => (
+            <label key={genre} className="checkbox">
+            <button className="checkbox-button" onClick={() => handleGenreChange(genre)}>
+              <i className={`checkbox-icon ${genres[genre]}`}/>  
+            <span>{genre}</span>
+            </button>
+          </label>
+        ))}
         </div>
         <div className="advanced-search-tool-orderby">
           <span className="advanced-search-tool-orderby-title text-nowrap">Order by:</span>

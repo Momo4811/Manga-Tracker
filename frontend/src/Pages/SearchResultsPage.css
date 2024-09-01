@@ -1,3 +1,6 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 .search-results {
   padding: 20px;
   max-width: 800px;
@@ -5,6 +8,7 @@
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', Arial, sans-serif; /* Updated font */
 }
 
 .search-result-item {
@@ -19,6 +23,7 @@
   font-size: 24px;
   margin-bottom: 10px;
   text-align: center;
+  font-weight: 700; /* Bold for emphasis */
 }
 
 .search-results-content {
@@ -34,16 +39,44 @@
 
 .search-results-info {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+
+}
+
+.search-results-info h2 {
+  margin: 0;
+  font-size: 22px; /* Slightly smaller than title */
+  font-weight: 700; /* Bold for emphasis */
+  color: #333;
+}
+
+.search-results-info h3 {
+  margin: 0;
+  font-size: 18px; /* Smaller than h2 */
+  font-weight: 500; /* Medium weight */
+  color: #666;
 }
 
 .search-results-info p {
-  margin: 10px 0;
-  font-size: 16px;
+  margin: 5px 0;
+  font-size: 16px; /* Base font size */
+  color: #555;
 }
 
 .search-results-info strong {
-  font-weight: bold;
+  font-weight: 700; /* Bold for emphasis */
+  color: #333;
 }
+
+.search-results-info .latest-chapter {
+  font-size: 18px; /* Same as h3 */
+  color: #007bff;
+  font-weight: 700; /* Bold for emphasis */
+}
+
 .error-message {
   padding: 20px;
   max-width: 800px;
@@ -54,4 +87,34 @@
   border-radius: 8px;
   text-align: center;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', Arial, sans-serif; /* Updated font */
+}
+
+.bookmark-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.bookmark-button:hover {
+  background-color: #0056b3;
+}
+
+.search-result-link {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit color from parent, assuming it's styled like an h2 */
+  font-size: inherit; /* Inherit font size from parent */
+  font-weight: inherit; /* Inherit font weight from parent */
+}
+
+.search-result-link:hover {
+  color: #1e90ff; /* Change color to a more blue shade on hover */
 }

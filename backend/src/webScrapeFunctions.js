@@ -39,6 +39,8 @@ const getMangaInformation = async (mangaTitle) => {
 
     const officialTitle = mangaPanel.find('h1').text().trim();
     const alternateTitles = mangaPanel.find('h2').text().trim();
+    const mangaStatus = $('body > div.body-site > div.container.container-main > div.container-main-left > div.panel-story-info > div.story-info-right > table > tbody > tr:nth-child(3) > td.table-value').text().trim();
+    
 
     const genres = mangaPanel.find('a.a-h').map((i, el) => $(el).text()).get().slice(1);
 
@@ -49,9 +51,11 @@ const getMangaInformation = async (mangaTitle) => {
     const mangaImage = mangaPanel.find('img.img-loading').attr('src');
 
     return {
+      mangaURL: mangaURL,
       title: officialTitle,
       alternateTitles: alternateTitles,
       genres: genres,
+      mangaStatus: mangaStatus,
       imageLink: mangaImage,
       latestChapter: {
         chapterNumber: chapterNumber,

@@ -8,11 +8,21 @@
 }
 
 .advanced-search-tool-title {
-  font-size: 24px;
-  margin-bottom: 10px;
+  font-size: 28px; /* Increase font size */
+  margin-bottom: 15px; /* Increase bottom margin */
   text-align: center;
   cursor: pointer;
+  border: 2px solid #ccc; /* Lighter border */
+  padding: 10px; /* Add padding */
+  border-radius: 8px; /* Add border radius */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  transition: border-color 0.3s; /* Smooth transition for border color */
 }
+
+.advanced-search-tool-title:hover {
+  border-color: black; /* Darker border on hover */
+}
+
 
 .advanced-search-tool-content {
   display: flex;
@@ -21,14 +31,18 @@
 }
 
 .advanced-search-tool-label {
-  font-size: 16px;
-  font-weight: bold;
+  display: block; /* Ensure it's a block element */
+  text-align: center; /* Center text horizontally */
+  font-size: 1.5em; /* Increase font size */
+  margin: 0 auto; /* Center the block element itself if needed */
 }
+
 .advanced-search-tool-genres-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
+
 .advanced-search-tool-genres-list label {
   display: block;
   margin: 5px 0;
@@ -64,4 +78,54 @@
 
 .hide-button i {
   margin-right: 5px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s;
+}
+
+.checkbox:hover {
+  background-color: #e9e9e9;
+}
+
+.checkbox-button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.checkbox-icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border: 1px solid #000;
+  margin-right: 10px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.checkbox-icon.unchecked {
+  background-color: white;
+}
+
+.checkbox-icon.include {
+  background-color: #32CD32;
+}
+
+.checkbox-icon.exclude {
+  background-color: red;
+}
+
+.checkbox span {
+  font-size: 16px;
+  font-weight: 500;
 }

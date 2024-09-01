@@ -1,4 +1,4 @@
 export { NavigationBar } from './NavigationBar'
 export { SearchBar } from './SearchBar'
 export { AdvancedSearchFilter } from './AdvancedSearchFilters'
-export { GenreCheckbox } from './GenreChecklist'
+export { LoginRegisterPopup } from './LoginRegisterPopup'

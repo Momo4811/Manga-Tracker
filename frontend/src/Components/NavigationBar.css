@@ -60,3 +60,24 @@
   font-size: medium;
   font-size: 16px;
 }
+.auth-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.auth-button {
+  text-decoration: none;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: #FF8C00;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.auth-button:hover {
+  background-color: #ffa231;
+}

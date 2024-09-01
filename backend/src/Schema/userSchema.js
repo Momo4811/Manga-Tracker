@@ -1,6 +1,17 @@
 const mongoose = require('mongoose')
 const { mangaSchema } = require('./mangaSchema')
 
+const bookmarkSchema = new mongoose.Schema({
+    site: {
+      type: String,
+      required: false
+    },
+    mangaURL: {
+      type: String,
+      required: false
+    }
+  });
+
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -16,7 +27,13 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     bookmarks: { 
-        type: [mangaSchema],
+        type: [bookmarkSchema],
         default: []
   }
 })
+
+
+
+const User = mongoose.model('User', userSchema)
+
+module.exports = { User };

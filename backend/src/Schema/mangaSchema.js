@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
 const mangaSchema = new mongoose.Schema({
+    mangaURL: {
+        type: String,
+        required: true
+    },  
     title: {
         type: String,
         required: true
@@ -11,6 +15,10 @@ const mangaSchema = new mongoose.Schema({
     },
     genres: {
         type: [String],
+        required: true
+    },
+    mangaStatus: {
+        type: String,
         required: true
     },
     imageLink: {
@@ -30,3 +38,4 @@ const mangaSchema = new mongoose.Schema({
     },
 
 })
+
