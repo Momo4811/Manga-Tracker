@@ -7,7 +7,7 @@ import { LoginRegisterPopup } from './LoginRegisterPopup';
 const NavigationBar = () => {
   const [searchText, setSearchText] = useState('');
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Add authentication state
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const handleClearSearch = () => {
     setSearchText('');

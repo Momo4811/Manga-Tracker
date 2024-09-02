@@ -11,10 +11,17 @@ const LoginRegisterPopup = ({ togglePopup, setIsAuthenticated }) => {
     setIsLogin(!isLogin);
   };
 
+  const clearFields = () => {
+    setUsername('');
+    setEmail('');
+    setPassword('');
+  };
+
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:4000/register', {
+      const url = `http://localhost:${process.env.PORT || 4000}/auth/register`;
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -25,20 +32,28 @@ const LoginRegisterPopup = ({ togglePopup, setIsAuthenticated }) => {
           password
         })
       });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'An error occurred');
+      }
       const data = await response.json();
-      alert(data.message);
       setIsAuthenticated(true);
       togglePopup();
+  
+      
     } catch (error) {
-      console.error('Error registering user:', error);
-      alert('Error registering user');
+      console.error('Error logging in:', error);
+      alert(error.message || 'Error logging in');
+      clearFields();
     }
   };
   
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:4000/login', {
+      const url = `http://localhost:${process.env.PORT || 4000}/auth/login`;
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -54,14 +69,15 @@ const LoginRegisterPopup = ({ togglePopup, setIsAuthenticated }) => {
         throw new Error(errorData.error || 'An error occurred');
       }
   
-      const data = await response.json();
-      alert(data.message);
+      const data = await response.json();      
 
       setIsAuthenticated(true);
-      togglePopup(); // Close the popup on successful login
+      togglePopup();
+
     } catch (error) {
       console.error('Error logging in:', error);
       alert(error.message || 'Error logging in');
+      clearFields();
     }
   };
 
