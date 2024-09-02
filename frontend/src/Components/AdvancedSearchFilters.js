@@ -9,18 +9,18 @@ const mangaGenres = [
   "Shounen ai", "Slice of life", "Smut", "Sports", "Supernatural", "Tragedy", "Webtoons", "Yaoi", "Yuri"
 ];
 
-const mangaGenresIndexes = [2, 3, 4, 6, 7, 9,
-                            10, 11, 48, 12, 13, 14,
-                            15, 16, 45, 17, 44, 43,
-                            19, 20, 21, 22, 24, 25,
-                            47, 26, 27, 28, 29, 30,
-                            31, 32, 33, 34, 35, 36,
-                            37, 38, 40, 41, 39, 42];
+// const mangaGenresIndexes = [2, 3, 4, 6, 7, 9,
+//                             10, 11, 48, 12, 13, 14,
+//                             15, 16, 45, 17, 44, 43,
+//                             19, 20, 21, 22, 24, 25,
+//                             47, 26, 27, 28, 29, 30,
+//                             31, 32, 33, 34, 35, 36,
+//                             37, 38, 40, 41, 39, 42];
 
-const mangaGenresMap = mangaGenres.reduce((acc, genre, index) => {
-  acc[genre] = mangaGenresIndexes[index];
-  return acc;
-}, {});
+// const mangaGenresMap = mangaGenres.reduce((acc, genre, index) => {
+//   acc[genre] = mangaGenresIndexes[index];
+//   return acc;
+// }, {});
 
 const mangaGenresChecked = mangaGenres.reduce((acc, genre) => {
   acc[genre] = "unchecked";
@@ -29,16 +29,16 @@ const mangaGenresChecked = mangaGenres.reduce((acc, genre) => {
 
 const AdvancedSearchFilter = ({ filters = { genres: [], keyword: '', sortBy: 'latest', status: 'all', keywordType: 'everything' }, handleInputChange, onFilterChange }) => {
   const [isContentVisible, setIsContentVisible] = useState(false);
-  const [isHelpContentVisible, setIsHelpContentVisible] = useState(false);
+  // const [isHelpContentVisible, setIsHelpContentVisible] = useState(false);
   const [genres, setGenres] = useState({mangaGenresChecked});
 
   const toggleContentVisibility = () => {
     setIsContentVisible(!isContentVisible);
   };
 
-  const toggleHelpContentVisibility = () => {
-    setIsHelpContentVisible(!isHelpContentVisible);
-  };
+  // const toggleHelpContentVisibility = () => {
+  //   setIsHelpContentVisible(!isHelpContentVisible);
+  // };
 
   const handleGenreChange = (genre) => {
     setGenres((prevGenres) => {
@@ -79,10 +79,10 @@ const AdvancedSearchFilter = ({ filters = { genres: [], keyword: '', sortBy: 'la
               <i></i>&nbsp;
             </span>
           </span> */}
-          <p className="advanced-search-tool-genres-help-content" style={{ display: isHelpContentVisible ? 'block' : 'none' }}>
+          {/* <p className="advanced-search-tool-genres-help-content" style={{ display: isHelpContentVisible ? 'block' : 'none' }}>
             <i className="advanced-search-tool-include-icon"></i><b>Include genre:</b> If you include Historical, it will filter only mangas with Historical genre. (You can include multiple genres).<br />
             <i className="advanced-search-tool-exclude-icon"></i><b>Exclude genre:</b> If you include Comedy, Romance but exclude Ecchi, it will filter all mangas with Comedy and Romance but Ecchi.
-          </p>
+          </p> */}
         </div>
         <div className="advanced-search-tool-genres-list">
         {mangaGenres.map((genre) => (

@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import './NavigationBar.css';
 import { SearchBar } from './SearchBar';
 import { LoginRegisterPopup } from './LoginRegisterPopup';
+import { useAuth } from '../Contexts/AuthContext';
 
 const NavigationBar = () => {
+  const { isAuthenticated, setIsAuthenticated } = useAuth();
   const [searchText, setSearchText] = useState('');
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const handleClearSearch = () => {
     setSearchText('');
@@ -18,9 +19,8 @@ const NavigationBar = () => {
   };
 
   const handleLogout = () => {
-    setIsAuthenticated(false); 
+    setIsAuthenticated(false);
   };
-
 
   return (
     <nav className="navbar">
@@ -50,7 +50,7 @@ const NavigationBar = () => {
         )}
       </div>
 
-      {isPopupOpen && <LoginRegisterPopup togglePopup={togglePopup} setIsAuthenticated={setIsAuthenticated} />}
+      {isPopupOpen && <LoginRegisterPopup togglePopup={togglePopup} />}
     </nav>
   );
 };

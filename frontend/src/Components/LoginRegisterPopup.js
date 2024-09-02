@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { useAuth } from '../Contexts/AuthContext';
 import './LoginRegisterPopup.css';
 
-const LoginRegisterPopup = ({ togglePopup, setIsAuthenticated }) => {
+const LoginRegisterPopup = ({ togglePopup }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const { setIsAuthenticated, setUserID } = useAuth();
 
   const switchMode = () => {
     setIsLogin(!isLogin);
@@ -37,10 +40,11 @@ const LoginRegisterPopup = ({ togglePopup, setIsAuthenticated }) => {
         const errorData = await response.json();
         throw new Error(errorData.error || 'An error occurred');
       }
+
       const data = await response.json();
+      setUserID(data.userID);
       setIsAuthenticated(true);
       togglePopup();
-  
       
     } catch (error) {
       console.error('Error logging in:', error);
@@ -68,10 +72,11 @@ const LoginRegisterPopup = ({ togglePopup, setIsAuthenticated }) => {
         const errorData = await response.json();
         throw new Error(errorData.error || 'An error occurred');
       }
-  
-      const data = await response.json();      
+
+      const data = await response.json();
 
       setIsAuthenticated(true);
+      setUserID(data.userID);
       togglePopup();
 
     } catch (error) {

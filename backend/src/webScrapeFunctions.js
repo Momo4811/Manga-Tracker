@@ -24,13 +24,11 @@ const findMangaURLS = async (mangaTitle) => {
   return mangaURLS;
 };
 
-const getMangaInformation = async (mangaTitle) => {
-  const mangaURLS = await findMangaURLS(mangaTitle);
+const getMangaInformation = async (mangaURLS) => {
   
   if (mangaURLS.length === 0) {
     return { message: `No results found for: ${mangaTitle}` }; // Return a message if no results are found
   }
-
   const mangaPromises = mangaURLS.map(async (mangaURL) => {
     const response = await fetchURL(mangaURL);
 
@@ -68,4 +66,4 @@ const getMangaInformation = async (mangaTitle) => {
   return mangasFound;
 };
 
-module.exports = { getMangaInformation };
+module.exports = { findMangaURLS, getMangaInformation };

@@ -27,8 +27,10 @@ router.post('/register', async (req, res) => {
     });
     await newUser.save();
 
-    res.status(201).json({ message: 'User registered successfully' });
-    console.log('User registered successfully');
+    console.log('User registered successfully with id:', newUser._id.toString());
+    res.status(201).json({ 
+      message: 'User registered successfully',
+      userID: newUser._id.toString()});
 
   } catch (error) {
     console.error('Error logging in user:', error);
@@ -52,9 +54,10 @@ router.post('/login', async (req, res) => {
       throw new Error('Invalid password')
     }
     
-    console.log('User logged in successfully');
-    res.json({ message: 'Login successful', userId: user._id })
-
+    console.log('User logged in successfully with id:', user._id.toString());
+    res.json({ 
+      message: 'Login successful', 
+      userID: user._id.toString() })
   } catch (error) {
     console.error('Error logging in user ', error);
     res.status(500).json({ error: error.message })

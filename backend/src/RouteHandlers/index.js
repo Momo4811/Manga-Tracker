@@ -7,7 +7,7 @@ const userRoutes = require('./userRoutes');
 const router = express.Router();
 
 router.use('/auth', authRouters);
-router.use('/manga', bookmarkRoutes);
+router.use('/bookmarks', bookmarkRoutes);
 router.use('/search', searchRoutes);
 router.use('/user', userRoutes);
 

@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { AdvancedSearchFilter } from '../Components/AdvancedSearchFilters';
+import { useAddBookmark } from '../Hooks/useAddBookmark';
+import { useSearchManga } from '../Hooks/useSearchManga';
 import './SearchResultsPage.css'; // Import CSS for styling
 
 const SearchResultItem = ({ result: manga }) => {
-
-  const handleBookmark = () => {
-    // Add your bookmark logic here
-    console.log(`Bookmarking manga: ${manga.title}`);
-  };
+  const { handleBookmark } = useAddBookmark();
 
   return (
     <div className="search-result-item">
@@ -30,48 +27,17 @@ const SearchResultItem = ({ result: manga }) => {
           <p><strong>Status:</strong> {manga.mangaStatus || 'N/A'}</p>
           <p><strong>Latest Chapter:</strong> {manga.latestChapter?.chapterNumber || 'N/A'}</p>
           <p><strong>Release Date:</strong> {manga.latestChapter?.releaseDate || 'N/A'}</p>
-          <button className="bookmark-button" onClick={handleBookmark}>Bookmark</button>
+          <button className="bookmark-button" onClick={() => handleBookmark(manga)}>Bookmark</button>
         </div>
       </div>
     </div>
   );
 };
 
-SearchResultItem.propTypes = {
-  result: PropTypes.object.isRequired,
-};
-
 const SearchResultsPage = () => {
   const { mangaTitle } = useParams();
-  const [searchResults, setSearchResults] = useState([]);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    setError(null);
-    const fetchResults = async () => {
-      const url = `http://localhost:${process.env.PORT || 4000}/search/${mangaTitle}`;
-
-      try {
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-
-        const data = await response.json();
-        if (!response.ok) {
-          throw new Error(data.error || 'Network response was not ok');
-        }
-        setSearchResults(data);
-      } catch (error) {
-        setError(error.message);
-      }
-    };
-
-    fetchResults();
-  }, [mangaTitle]);
-
+  const {searchResults, error} = useSearchManga(mangaTitle);
+  
   if (error) {
     return <div className="error-message">{error}</div>;
   }

@@ -1,4 +1,4 @@
 export { HomePage } from './HomePage'
 export { AddBookmark } from './AddBookmark'
-export { ViewBookmarks } from './ViewBookmarks'
+export { ViewBookmarksPage } from './ViewBookmarks'
 export { SearchResultsPage } from './SearchResultsPage'

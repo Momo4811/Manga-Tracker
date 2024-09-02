@@ -1,14 +1,17 @@
 import React from 'react';
-import { NavigationBar } from './Components/NavigationBar';
-import { NavigationBarRoutes } from './Navigation/NavigationBarRoutes';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { NavigationBar } from './Components/NavigationBar';
+import { NavigationBarRoutes } from './NavigationBarRoutes';
+import { AuthProvider } from './Contexts/AuthContext';
 
 const App = () => {
   return (
-    <Router>
-      <NavigationBar />
-      <NavigationBarRoutes />
-    </Router>
+    <AuthProvider>
+      <Router>
+        <NavigationBar />
+        <NavigationBarRoutes />
+      </Router>
+    </AuthProvider>
   );
 };
 

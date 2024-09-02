@@ -3,18 +3,19 @@ const express = require('express');
 const mongoose = require('mongoose');
 const axios = require('axios');
 
-const { getMangaInformation } = require('../webScrapeFunctions.js');
+const { getMangaInformation, findMangaURLS } = require('../webScrapeFunctions.js');
 const port = process.env.PORT || 4000;
 
 
 const router = express.Router();
-axios.defaults.baseURL = `http://localhost:${port}`;
+axios.default.baseURL = `http://localhost:${port}`;
 
 router.get('/:title', async (req, res) => {
   const { title } = req.params;
 
   try {
-    const mangasFound = await getMangaInformation(title);
+    const mangaURLSFound = await findMangaURLS(title);
+    const mangasFound = await getMangaInformation(mangaURLSFound);
 
     if (mangasFound.message) {
       throw new Error(mangasFound.message); // Return 404 if no results are found
