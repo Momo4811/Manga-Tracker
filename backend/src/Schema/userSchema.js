@@ -1,15 +1,19 @@
 const mongoose = require('mongoose')
 
+
 const bookmarkSchema = new mongoose.Schema({
-    mangaURL: {
-      type: String,
-      required: false
+  mangaURL: {
+    type: String,
+    required: false
+  },
+  lastChapterRead: {
+    type: {
+      chapterTitle: String,
+      chapterURL: String
     },
-    lastChapterRead: {
-      type: Number,
-      required: false
-    },
-  }, { _id: false });
+    required: false
+  },
+}, { _id: false });
 
 const userSchema = new mongoose.Schema({
     username: {

@@ -27,7 +27,7 @@ const mangaSchema = new mongoose.Schema({
     },
 
     latestChapter: {
-        chapterNumber: {
+        chapterTitle: {
             type: Number,
             required: true
         },

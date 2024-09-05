@@ -1,6 +1,5 @@
 require('dotenv').config({ path: '../../../mongo.env' });
 const express = require('express');
-const mongoose = require('mongoose');
 const axios = require('axios');
 
 const { getMangaInformation, findMangaURLS } = require('../webScrapeFunctions.js');
@@ -8,7 +7,6 @@ const port = process.env.PORT || 4000;
 
 
 const router = express.Router();
-axios.default.baseURL = `http://localhost:${port}`;
 
 router.get('/:title', async (req, res) => {
   const { title } = req.params;
@@ -29,3 +27,4 @@ router.get('/:title', async (req, res) => {
 });
 
 module.exports = router;
+

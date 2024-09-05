@@ -1,83 +1,87 @@
+/* General styling for the navigation bar */
 .navbar {
-  background-color: #FF8C00; /* Orange background for minimalistic look */
+  background: linear-gradient(45deg, #FF8C00, #FFA500); /* Updated colors */
   border-radius: 20px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for extra look */
-  padding: 10px 20px; /* Padding inside the navbar */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 5px 10px; /* Padding inside the navbar */
   display: flex;
-  justify-content: center; /* Center items horizontally */
+  justify-content: space-between;
   align-items: center; /* Center items vertically */
   font-family: Arial, sans-serif; /* Standard font */
 }
-
 .navbar-list {
   list-style: none; /* Remove default list styling */
   display: flex;
   gap: 140px; /* Increased space between items */
-  margin: 0;
-  padding: 0;
   justify-content: center; /* Center items horizontally */
 }
-
 .navbar-item {
   margin: 0;
 }
-
 .navbar-link {
   text-decoration: none; /* Remove underline from links */
   color: #ffffff; /* Light grey color for text */
   padding: 15px 20px; /* Increased padding inside the links */
   border-radius: 30px; /* Rounded corners for links */
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; /* Smooth transition for hover effect */
+  transition: background 0.3s, box-shadow 0.3s;
   font-size: 23px; /* Increase font size */
-  letter-spacing: 1.5px; /* Increase spacing between letters */
   font-weight: bold; /* Make text bold */
 }
-
 .navbar-link:hover {
-  animation: colorChange 1s ease forwards;
-  color: #ffffff; /* White color on hover */
-}
-
-@keyframes colorChange {
-  0% {
-    background-color: #FF8C00; /* Base color */
-  }
-  100% {
-    background-color: #ffa231; /* Maximum lightness color */
-  }
-}
-
-.navbar-search {
-  display: flex;
-  align-items: center;
-  margin-left: 10%; /* Add space between the search bar and the links */
-  flex: 0 0 15%
-}
-
-.search-input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  font-size: medium;
-  font-size: 16px;
+  background: linear-gradient(45deg, #ffa600, #ff6347); /* Updated hover colors */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 .auth-buttons {
   display: flex;
-  gap: 10px;
+  align-items: center;
+}
+.auth-button {
+  margin-left: 20px; /* Increased margin for more space between buttons */
+  padding: 15px 20px; /* Increased padding */
+  background-color: #FFA500;
+  color: white;
+  border: none;
+  border-radius: 30px; /* Rounded corners */
+  cursor: pointer;
+  font-size: 23px; /* Increase font size */
+  font-weight: bold; /* Make text bold */
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+.auth-button:hover {
+  background: linear-gradient(45deg, #ffa600, #ff6347); /* Updated hover colors */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-.auth-button {
-  text-decoration: none;
-  color: #ffffff;
-  padding: 10px 20px;
-  border-radius: 20px;
-  background-color: #FF8C00;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  font-size: 18px;
-  font-weight: bold;
+/* Search bar styling */
+.navbar-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.search-input {
+  padding: 10px 15px; /* Reduced padding */
+  border-radius: 20px; /* Rounded corners */
+  border: 1px solid #ccc;
+  font-size: 18px; /* Reduced font size */
+  padding-left: 40px; /* Adjust padding to the left for the search icon */
+  width: 250px; /* Adjust width as needed */
+}
+.search-button {
+  position: absolute;
+  left: 10px; /* Adjusted position */
+  background: none;
   border: none;
   cursor: pointer;
+  padding: 0;
 }
-
-.auth-button:hover {
-  background-color: #ffa231;
+.search-icon {
+  color: #2F2F2F;
+  font-size: 18px; /* Match font size */
+}
+.clear-icon {
+  position: absolute;
+  right: 10px; /* Adjusted position */
+  color: #2F2F2F;
+  cursor: pointer;
+  font-size: 18px; /* Match font size */
 }

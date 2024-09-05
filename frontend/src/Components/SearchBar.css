@@ -1,34 +1,41 @@
 .navbar-search {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-  
-  .search-input {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    padding-left: 30px; /* Add padding to the left for the search icon */
-    width: 100%;
-  }
-  
-  .search-button {
-    position: absolute;
-    left: 10px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-  }
-  
-  .search-icon {
-    color: #2F2F2F;
-  }
-  
-  .clear-icon {
-    position: absolute;
-    right: 10px;
-    color: #2F2F2F;
-    cursor: pointer;
-  }
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Add smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+.search-input {
+  padding: 10px 15px; /* Reduced padding */
+  border-radius: 20px; /* Rounded corners */
+  border: 1px solid #ccc;
+  font-size: 18px; /* Reduced font size */
+  padding-left: 40px; /* Adjust padding to the left for the search icon */
+  width: 250px; /* Adjust width as needed */
+}
+
+.search-button {
+  position: absolute;
+  left: 10px; /* Adjusted position */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.search-icon {
+  color: #2F2F2F;
+  font-size: 18px; /* Match font size */
+}
+
+.clear-icon {
+  position: absolute;
+  right: 10px; /* Adjusted position */
+  color: #2F2F2F;
+  cursor: pointer;
+  font-size: 18px; /* Match font size */
+}

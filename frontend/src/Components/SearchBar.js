@@ -4,7 +4,7 @@ import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import './SearchBar.css'; // Assuming you have a CSS file for styling
 
-const SearchBar = ({ searchText, setSearchText, handleClearSearch }) => {
+const SearchBar = ({ searchText, setSearchText }) => {
   const navigate = useNavigate();
 
   const handleKeyDown = (event) => {
@@ -24,6 +24,9 @@ const SearchBar = ({ searchText, setSearchText, handleClearSearch }) => {
       handleClearSearch();
       navigate(`/search/${customEncode(searchText)}`);
     }
+  };
+  const handleClearSearch = () => {
+    setSearchText('');
   };
 
   return (

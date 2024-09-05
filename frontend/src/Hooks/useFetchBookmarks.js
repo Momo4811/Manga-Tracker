@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const useFetchBookmarks = (userID, refetchTrigger) => {
+const useFetchBookmarks = (userID, isAuthenticated, refetchTrigger, bookmarks) => {
   const [searchResults, setSearchResults] = useState([]);
   const [error, setError] = useState(null);
 
@@ -31,7 +31,7 @@ const useFetchBookmarks = (userID, refetchTrigger) => {
     };
 
     fetchBookmarks();
-  }, [userID, refetchTrigger]);
+  }, [isAuthenticated, refetchTrigger, bookmarks]);
 
   return { searchResults, error };
 };

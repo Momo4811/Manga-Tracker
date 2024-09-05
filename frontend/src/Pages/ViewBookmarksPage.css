@@ -118,3 +118,65 @@
 .search-result-link:hover {
   color: #1e90ff; /* Change color to a more blue shade on hover */
 }
+
+.bookmark-search-results-info {
+  font-family: Arial, sans-serif;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+.bookmark-search-results-info p {
+  margin: 5px 0;
+}
+
+.bookmark-search-results-info p strong {
+  font-weight: bold;
+}
+
+.bookmark-search-results-info p:first-child {
+  font-size: 1.05em; /* Larger font size for Updates */
+}
+
+/* Style for buttons */
+
+.chapter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; 
+  position: absolute;
+  bottom: 10px; 
+  left: 10px; 
+}
+
+.bookmark-search-results-info .next-chapter-button,
+.bookmark-search-results-info .continue-reading-button,
+.bookmark-search-results-info .view-all-chapters {
+  font-size: 0.9em; /* Slightly smaller font size */
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.bookmark-search-results-info .remove-bookmark-button {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.bookmark-search-results-info .next-chapter-button {
+  background-color: #4caf50;
+  color: white;
+}
+
+.bookmark-search-results-info .continue-reading-button {
+  background-color: #2196f3;
+  color: white;
+}
+
+.bookmark-search-results-info .view-all-chapters {
+  background-color: #ff9800;
+  color: white;
+}

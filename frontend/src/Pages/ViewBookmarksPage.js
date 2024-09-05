@@ -5,10 +5,10 @@ import { useFetchBookmarks } from '../Hooks/useFetchBookmarks';
 import './ViewBookmarksPage.css'; // Import CSS for styling
 
 const ViewBookmarksPage = () => {
-  const { userID } = useAuth();
+  const { isAuthenticated, userID } = useAuth();
   const [refetchTrigger, setrefetchTrigger] = useState(false);
 
-  const { searchResults, error } = useFetchBookmarks(userID, refetchTrigger);
+  const { searchResults, error } = useFetchBookmarks(userID, isAuthenticated, refetchTrigger);
 
   if (error) {
     return <div className="error-message">{error}</div>;

@@ -9,6 +9,7 @@
 
 .advanced-search-tool-title {
   font-size: 28px; /* Increase font size */
+  font-family: 'Roboto', Arial, sans-serif; /* Updated font */  
   margin-bottom: 15px; /* Increase bottom margin */
   text-align: center;
   cursor: pointer;
