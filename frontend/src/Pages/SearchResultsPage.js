@@ -1,10 +1,11 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import { AdvancedSearchFilter } from '../Components/AdvancedSearchFilters';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useParams, useNavigate } from 'react-router-dom';
+import { AdvancedSearchFilter, Pagination } from '../Components';
 import { handleAddBookmark } from '../Utilities/handleAddBookmark';
 import { useSearchManga } from '../Hooks/useSearchManga';
 import { useAuth } from '../Contexts/AuthContext'; // Import useAuth
 import './SearchResultsPage.css'; // Import CSS for styling
+import { Loading } from '../Components/Loading';
 
 const SearchResultItem = ({ manga }) => {
   const { isAuthenticated, userID } = useAuth(); // Get isAuthenticated and userID from AuthContext
@@ -16,11 +17,11 @@ const SearchResultItem = ({ manga }) => {
       </a>
       <div className="search-results-content">
         <a href={manga.mangaURL}>
-        <img 
-          className="search-results-image" 
-          src={manga.imageLink || 'default-image.jpg'} 
-          alt={manga.title || 'No title available'} 
-        />
+          <img
+            className="search-results-image"
+            src={manga.imageLink || 'default-image.jpg'}
+            alt={manga.title || 'No title available'}
+          />
         </a>
         <div className="search-results-info">
           <p><strong>Alternate Titles:</strong> {manga.alternateTitles || 'N/A'}</p>
@@ -35,22 +36,58 @@ const SearchResultItem = ({ manga }) => {
   );
 };
 
-const SearchResultsPage = () => {
+const SearchResultsPage = ({ searchType }) => {
   const { mangaTitle } = useParams();
-  const { searchResults, error } = useSearchManga(mangaTitle);
-  
+  const location = useLocation();
+  const navigate = useNavigate();
+  const searchParams = new URLSearchParams(location.search);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+
+
+  const regularURL = `https://manganato.com/search/story/${mangaTitle}?page=${page}`;
+  const advancedURL = `https://manganato.com/advanced_search?${searchParams.toString()}&page=${page}`;
+
+  const searchURL = searchType === 'advanced' ? advancedURL : regularURL;
+
+  const { searchResults, totalPages, error } = useSearchManga(searchURL, page);
+
+  useEffect(() => {
+    if (searchResults) {
+      setLoading(false);
+    }
+  }, [searchResults]);
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+    searchParams.set('page', newPage);
+    navigate(`${location.pathname}?${searchParams.toString()}`);
+  };
+
+
   if (error) {
     return <div className="error-message">{error}</div>;
   }
 
   return (
-    <div className={"search-results-page"}>
-      <AdvancedSearchFilter />
-      <div className="search-results">
-        {searchResults.map((manga, index) => (
-          <SearchResultItem key={index} manga={manga} />
-        ))}
-      </div>
+    <div className="search-results-page">
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <AdvancedSearchFilter />
+          <div className="search-results">
+            {searchResults.map((manga, index) => (
+              <SearchResultItem key={index} manga={manga} />
+            ))}
+          </div>
+          <Pagination
+            currentPage={page}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+        </>
+      )}
     </div>
   );
 };

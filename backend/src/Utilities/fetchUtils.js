@@ -12,13 +12,17 @@ const fetchURL = async (url) => {
   }
 };
 
-const findMangaURLS = async (mangaTitle) => {
-  const searchUrl = `https://manganato.com/search/story/${mangaTitle.replace(' ', '_')}`;
-  const response = await fetchURL(searchUrl);
-
+const findMangaURLS = async (searchURL) => {
+  const response = await fetchURL(searchURL);
   const $ = cheerio.load(response.data);
-  const mangasFound = $('a.item-img.bookmark_check');
 
+  let mangasFound;
+  if (searchURL.includes('advanced_search')) {
+    mangasFound = $('a.genres-item-img.bookmark_check');
+  } else {
+    mangasFound = $('a.item-img.bookmark_check');
+  }
+  
   if (!mangasFound.length) {
     return []; // Return an empty array instead of throwing an error
   }

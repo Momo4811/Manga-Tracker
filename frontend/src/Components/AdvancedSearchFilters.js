@@ -24,16 +24,14 @@ const mangaGenresMap = mangaGenres.reduce((acc, genre, index) => {
 }, {});
 
 const mangaGenresChecked = mangaGenres.reduce((acc, genre) => {
-  acc[genre] = "unchecked";
+  acc[genre] = 'unchecked';
   return acc;
 }, {});
 
 const AdvancedSearchFilter = () => {
   const [isContentVisible, setIsContentVisible] = useState(false);
-  // const [isHelpContentVisible, setIsHelpContentVisible] = useState(false);
-  const [genres, setGenres] = useState({ mangaGenresChecked });
+  const [genres, setGenres] = useState(mangaGenresChecked);
   const [keyword, setkeyword] = useState('');
-  const [page, setPage] = useState(1);
   const [status, setStatus] = useState('');
   const [sortBy, setSortBy] = useState('');
   const [keywordType, setKeywordType] = useState('everything');
@@ -80,11 +78,10 @@ const AdvancedSearchFilter = () => {
     const statusStr = status !== 'all' ? `&sts=${status}` : '';
     const sortByStr = sortBy ? `&orby=${sortBy}` : '';
     const keywordTypeStr = keywordType ? `&keyt=${keywordType}` : '';
-    const pageStr = `&page=${page}`;
-
-    const searchURL = includedGenresStr + excludedGenresStr + keywordStr + statusStr + sortByStr + keywordTypeStr + pageStr;
-
-    navigate(`/advanced_search?s=all${searchURL}`);
+    const searchURL = includedGenresStr + excludedGenresStr + keywordStr + statusStr + sortByStr + keywordTypeStr;
+    
+    setIsContentVisible(false);
+    navigate(`/advanced_search?s=all${searchURL}&page=1`);
   };
 
   return (

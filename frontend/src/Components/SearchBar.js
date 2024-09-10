@@ -22,7 +22,7 @@ const SearchBar = ({ searchText, setSearchText }) => {
       };
       
       handleClearSearch();
-      navigate(`/search/${customEncode(searchText)}`);
+      navigate(`/search/${customEncode(searchText)}&page=1`);
     }
   };
   const handleClearSearch = () => {

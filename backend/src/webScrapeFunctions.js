@@ -1,5 +1,5 @@
 const { fetchURL, findMangaURLS } = require('./Utilities/fetchUtils');
-const { fetchAndParseMangaPage, extractChapters } = require('./Utilities/parseUtils');
+const { fetchAndParseMangaPage, extractChapters, extractTotalPages } = require('./Utilities/parseUtils');
 const { getCurrentChapterIndex, getBookmarkInformation, getMangaInformation } = require('./Utilities/mangaUtils');
 
 module.exports = {
@@ -9,5 +9,6 @@ module.exports = {
   extractChapters,
   getCurrentChapterIndex,
   getBookmarkInformation,
-  getMangaInformation
+  getMangaInformation,
+  extractTotalPages
 };

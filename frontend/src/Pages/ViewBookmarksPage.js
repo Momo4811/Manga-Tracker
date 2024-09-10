@@ -1,21 +1,28 @@
-// frontend/src/Pages/ViewBookmarksPage.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../Contexts/AuthContext';
 import { BookmarkItem } from '../Components/BookmarkItem';
 import { useFetchBookmarks } from '../Hooks/useFetchBookmarks';
-import { FaSignInAlt } from 'react-icons/fa'; // Import an icon for better visual appeal
+import { FaSignInAlt } from 'react-icons/fa';
+import { Loading } from '../Components/Loading';
 
-import './ViewBookmarksPage.css'; // Import CSS for styling
+import './ViewBookmarksPage.css';
 
 const ViewBookmarksPage = () => {
   const { isAuthenticated, userID } = useAuth();
   const [refetchTrigger, setrefetchTrigger] = useState(false);
-  const [hideSeen, setHideSeen] = useState(false); // State to manage visibility of seen mangas
+  const [hideSeen, setHideSeen] = useState(false);
+  const [loading, setLoading] = useState(true); 
 
   const { searchResults, error } = useFetchBookmarks(userID, isAuthenticated, refetchTrigger);
 
+  useEffect(() => {
+    if (searchResults) {
+      setLoading(false);
+    }
+  }, [searchResults]);
+
   const getReadingStatus = (manga) => {
-    if (manga.updatesSinceRead == "All caught up (ᴗ_ ᴗ。)") {
+    if (manga.updatesSinceRead === "All caught up (ᴗ_ ᴗ。)") {
       return 'all-read';
     } else if (manga.updatesSinceRead === "Never been read ◝(ᵔᵕᵔ)◜") {
       return 'not-read';
@@ -48,15 +55,19 @@ const ViewBookmarksPage = () => {
           {hideSeen ? 'Show All' : 'Hide Caught Up Manga'}
         </button>
       </div>
-      <div className="search-results">
-        {filteredResults.map((manga) => (
-          <BookmarkItem 
-            key={manga.mangaURL}
-            manga={manga} 
-            readingStatus={getReadingStatus(manga)}
-            setrefetchTrigger={setrefetchTrigger} />
-        ))}
-      </div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="search-results">
+          {filteredResults.map((manga) => (
+            <BookmarkItem 
+              key={manga.mangaURL}
+              manga={manga} 
+              readingStatus={getReadingStatus(manga)}
+              setrefetchTrigger={setrefetchTrigger} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
