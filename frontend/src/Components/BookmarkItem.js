@@ -6,7 +6,7 @@ import { handleContinueReading } from '../Utilities/handleContinueReading';
 import { handleReadNext } from '../Utilities/handleReadNext';
 import { useAuth } from '../Contexts/AuthContext';
 
-const BookmarkItem = ({ manga, setrefetchTrigger }) => {
+const BookmarkItem = ({ manga, readingStatus, setrefetchTrigger }) => {
   const navigate = useNavigate();
   const { userID } = useAuth();
 
@@ -31,8 +31,8 @@ const BookmarkItem = ({ manga, setrefetchTrigger }) => {
             alt={manga.title || 'No title available'}
           />
         </a>
-        <div className="bookmark-search-results-info">
-          <p><strong>Updates:</strong> {manga.updatesSinceRead || 'N/A'}</p>
+        <div className={`bookmark-search-results-info ${readingStatus}`}>
+          <p className="unseen-text"><strong >Unseen:</strong> {manga.updatesSinceRead || 'N/A'}</p>
           <p><strong>Status:</strong> {manga.mangaStatus || 'N/A'}</p>
           <p><strong>Last Read Chapter:</strong> {manga.lastChapterRead?.chapterTitle || 'N/A'}</p>
           <br />

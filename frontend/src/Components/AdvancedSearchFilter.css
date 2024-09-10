@@ -42,6 +42,8 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+  margin-top: 20px; /* Add gap between genres checklist and the rest of the selectors */
+  margin-bottom: 30px;
 }
 
 .advanced-search-tool-genres-list label {
@@ -49,24 +51,61 @@
   margin: 5px 0;
 }
 
+.advanced-search-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; /* Match font */
+}
+
 .advanced-search-tool-orderby,
-.advanced-search-tool-status {
+.advanced-search-tool-status,
+.advanced-search-tool-keyword {
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-bottom: 10px;
 }
 
 .advanced-search-tool-orderby-title,
-.advanced-search-tool-status-title {
-  font-size: 16px;
+.advanced-search-tool-status-title,
+.advanced-search-tool-keyword-title {
   font-weight: bold;
+  font-size: 1.1em;
+  min-width: 120px; /* Ensure titles have a consistent width */
 }
 
 .advanced-search-tool-orderby-content,
-.advanced-search-tool-status-content {
-  padding: 5px;
-  border-radius: 4px;
+.advanced-search-tool-status-content,
+.advanced-search-tool-keyword-type,
+.advanced-search-tool-keyword-content {
+  padding: 8px;
   border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  width: 50%; /* Adjust width to 50% of current size */
+  flex-grow: 0; /* Prevent input from growing */
+}
+
+.advanced-search-tool-apply {
+  padding: 10px 20px;
+  background-color: #007acc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s, transform 0.3s;
+  align-self: flex-start; /* Align button to the start */
+}
+
+.advanced-search-tool-apply:hover {
+  background-color: #005f99;
+  transform: translateY(-2px);
 }
 
 .hide-button {
@@ -130,3 +169,4 @@
   font-size: 16px;
   font-weight: 500;
 }
+

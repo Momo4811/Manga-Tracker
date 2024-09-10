@@ -7,7 +7,7 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import './ViewAllChaptersPage.css';
 
 const ViewAllChaptersPage = () => {
-  const { isAuthenticated, userID } = useAuth();
+  const { isAuthenticated } = useAuth();
   const location = useLocation();
   const mangaURL = location.state.mangaURL;
 
@@ -17,34 +17,6 @@ const ViewAllChaptersPage = () => {
 
   const handleToggleDescription = () => {
     setIsDescriptionExpanded(!isDescriptionExpanded);
-  };
-
-  const handleChapterClick = async (chapter, index) => {
-    try {
-      const url = `http://localhost:${process.env.PORT || 4000}/bookmarks/updateLastRead`;
-      const response = await fetch(url, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          userID,
-          mangaURL,
-          chapterIndex: index
-        })
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'An error occurred');
-      }
-
-      const data = await response.json();
-      console.log(data.message || 'Last read chapter updated successfully');
-    } catch (error) {
-      console.error('Error updating last read chapter:', error);
-      alert(error.message || 'Error updating last read chapter');
-    }
   };
 
   if (error) {

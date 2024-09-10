@@ -1,13 +1,15 @@
+
 import { useState, useEffect } from 'react';
 
-const useFetchBookmarks = (userID, isAuthenticated, refetchTrigger, bookmarks) => {
+const useAdvancedSearch = (searchURL) => {
   const [searchResults, setSearchResults] = useState([]);
   const [error, setError] = useState(null);
 
+
   useEffect(() => {
     setError(null);
-    const fetchBookmarks = async () => {
-      const url = `http://localhost:${process.env.PORT || 4000}/bookmarks/fetchBookmarks`;
+    const fetchResults = async () => {
+      const url = `http://localhost:${process.env.PORT || 4000}/search/advanced-search`;
 
       try {
         const response = await fetch(url, {
@@ -15,9 +17,7 @@ const useFetchBookmarks = (userID, isAuthenticated, refetchTrigger, bookmarks) =
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            userID: userID
-          })
+          body: JSON.stringify({ searchURL }),
         });
 
         const data = await response.json();
@@ -30,10 +30,10 @@ const useFetchBookmarks = (userID, isAuthenticated, refetchTrigger, bookmarks) =
       }
     };
 
-    fetchBookmarks();
-  }, [userID, refetchTrigger, bookmarks]);
+    fetchResults();
+  }, [searchURL]);
 
   return { searchResults, error };
 };
 
-export { useFetchBookmarks };
+export { useAdvancedSearch };

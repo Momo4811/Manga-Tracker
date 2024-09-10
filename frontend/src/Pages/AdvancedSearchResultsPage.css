@@ -1,0 +1,14 @@
+.search-results-page {
+    padding: 20px;
+  }
+  
+  .search-results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .error-message {
+    color: red;
+    font-weight: bold;
+  }

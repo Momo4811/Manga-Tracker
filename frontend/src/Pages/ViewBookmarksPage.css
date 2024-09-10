@@ -180,3 +180,94 @@
   background-color: #ff9800;
   color: white;
 }
+
+/* Existing styles */
+.login-message-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Align items to the start (top) */
+  height: 100vh;
+  text-align: center;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 50px; /* Add margin to push it down from the top */
+}
+
+.login-icon {
+  font-size: 3em;
+  color: #007acc;
+  margin-bottom: 10px;
+}
+
+.login-message {
+  font-size: 1.2em;
+  color: #333;
+}
+
+.bookmark-item {
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.all-read .unseen-text {
+  color: #28a745; /* Green for all read */
+}
+
+.not-read .unseen-text {
+  color: #dc3545; /* Red for not read */
+}
+
+.hide-seen-button-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 5px;
+}
+/* Styling for the back button */
+.hide-seen-button {
+  width: auto;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #1e90ff, #00bfff);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.hide-seen-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));
+  transition: left 0.3s;
+}
+
+.hide-seen-button:hover::before {
+  left: 100%;
+}
+
+.hide-seen-button:hover {
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.hide-seen-button .fa-arrow-left {
+  margin-right: 8px;
+}

@@ -44,7 +44,7 @@ const calculateUpdatesSinceRead = (lastChapterRead, chapters) => {
   
     const unseenChapters = lastReadIndex;
     if (unseenChapters > 0) {
-      return `${unseenChapters} updates since last read`;
+      return `${unseenChapters} chapters left`;
     } else {
       return "All caught up (ᴗ_ ᴗ。)";
     }
@@ -78,7 +78,7 @@ const getBookmarkInformation = async (bookmarks) => {
 // Function to get manga information based on URLs
 const getMangaInformation = async (mangaURLS) => {
   if (mangaURLS.length === 0) {
-    return { message: `No results found for: ${mangaTitle}` };
+    return { message: `No results found` };
   }
   const mangaPromises = mangaURLS.map(async (mangaURL) => {
     const $ = await fetchAndParseMangaPage(mangaURL);

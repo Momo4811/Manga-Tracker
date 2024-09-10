@@ -1,10 +1,7 @@
 import React from 'react';
 import { Route, Routes, Navigate} from 'react-router-dom';
-import { HomePage } from './Pages';
-import { ViewBookmarksPage } from './Pages'; 
-import { AddBookmark } from './Pages'; 
-import { SearchResultsPage } from './Pages';
-import { ViewAllChaptersPage } from './Pages';
+import { HomePage, ViewBookmarksPage, AddBookmark, SearchResultsPage, 
+        ViewAllChaptersPage, AdvancedSearchResultsPage } from './Pages';
 
 const NavigationBarRoutes = () => {
   return (
@@ -15,7 +12,8 @@ const NavigationBarRoutes = () => {
       <Route path="/add-bookmark" element={<AddBookmark />} />
       <Route path="/search/:mangaTitle" element={<SearchResultsPage />} />
       <Route path="/view-bookmarks/:title" element={<ViewAllChaptersPage />} /> 
-  </Routes>
+      <Route path="/advanced_search" element={<AdvancedSearchResultsPage />} />
+      </Routes>
   );
 };
 
