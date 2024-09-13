@@ -62,11 +62,14 @@ Manga Tracker is a web application that helps you track your favorite manga and 
 ### Home Page
 ![Home Page](images/home_page.png)
 
+
 ### Search Page
 ![Search Page](images/search_page.png)
 
+
 ### Bookmarks Page
 ![Manga Details Page](images/view_bookmarks_page.png)
+
 
 ### Manga Details Page
 ![Manga Details Page](images/manga_details_page.png)
