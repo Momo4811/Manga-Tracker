@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { useFetchMangaChapters } from '../Hooks/useFetchMangaChapters';
 import { useLocation } from 'react-router-dom';
-import { useAuth } from '../Contexts/AuthContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+
+import { useFetchMangaChapters } from '../../Hooks/useFetchMangaChapters';
+import { useAuth } from '../../Contexts/AuthContext';
+import { Loading } from '../../Components';
+
 import './ViewAllChaptersPage.css';
 
 const ViewAllChaptersPage = () => {
@@ -24,7 +27,7 @@ const ViewAllChaptersPage = () => {
   }
 
   if (!mangaInfo) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   return (

@@ -1,3 +1,4 @@
+/* Panel */
 .panel-advanced-search-tool {
   padding: 20px;
   max-width: 800px;
@@ -7,42 +8,45 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Title */
 .advanced-search-tool-title {
-  font-size: 28px; /* Increase font size */
-  font-family: 'Roboto', Arial, sans-serif; /* Updated font */  
-  margin-bottom: 15px; /* Increase bottom margin */
+  font-size: 28px;
+  font-family: 'Roboto', Arial, sans-serif;
+  margin-bottom: 15px;
   text-align: center;
   cursor: pointer;
-  border: 2px solid #ccc; /* Lighter border */
-  padding: 10px; /* Add padding */
-  border-radius: 8px; /* Add border radius */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-  transition: border-color 0.3s; /* Smooth transition for border color */
+  border: 2px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s;
 }
 
 .advanced-search-tool-title:hover {
-  border-color: black; /* Darker border on hover */
+  border-color: black;
 }
 
-
+/* Content */
 .advanced-search-tool-content {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
+/* Label */
 .advanced-search-tool-label {
-  display: block; /* Ensure it's a block element */
-  text-align: center; /* Center text horizontally */
-  font-size: 1.5em; /* Increase font size */
-  margin: 0 auto; /* Center the block element itself if needed */
+  display: block;
+  text-align: center;
+  font-size: 1.5em;
+  margin: 0 auto;
 }
 
+/* Genres List */
 .advanced-search-tool-genres-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  margin-top: 20px; /* Add gap between genres checklist and the rest of the selectors */
+  margin-top: 20px;
   margin-bottom: 30px;
 }
 
@@ -51,6 +55,7 @@
   margin: 5px 0;
 }
 
+/* Filters */
 .advanced-search-filters {
   display: flex;
   flex-direction: column;
@@ -59,7 +64,7 @@
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; /* Match font */
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 .advanced-search-tool-orderby,
@@ -76,7 +81,7 @@
 .advanced-search-tool-keyword-title {
   font-weight: bold;
   font-size: 1.1em;
-  min-width: 120px; /* Ensure titles have a consistent width */
+  min-width: 120px;
 }
 
 .advanced-search-tool-orderby-content,
@@ -87,10 +92,11 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1em;
-  width: 50%; /* Adjust width to 50% of current size */
-  flex-grow: 0; /* Prevent input from growing */
+  width: 50%;
+  flex-grow: 0;
 }
 
+/* Apply Button */
 .advanced-search-tool-apply {
   padding: 10px 20px;
   background-color: #007acc;
@@ -100,7 +106,7 @@
   cursor: pointer;
   font-size: 1em;
   transition: background-color 0.3s, transform 0.3s;
-  align-self: flex-start; /* Align button to the start */
+  align-self: flex-start;
 }
 
 .advanced-search-tool-apply:hover {
@@ -108,6 +114,7 @@
   transform: translateY(-2px);
 }
 
+/* Hide Button */
 .hide-button {
   background: none;
   border: none;
@@ -120,6 +127,7 @@
   margin-right: 5px;
 }
 
+/* Checkbox */
 .checkbox {
   display: flex;
   align-items: center;
@@ -169,4 +177,3 @@
   font-size: 16px;
   font-weight: 500;
 }
-

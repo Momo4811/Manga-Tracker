@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useLocation, useParams, useNavigate } from 'react-router-dom';
-import { AdvancedSearchFilter, Pagination } from '../Components';
-import { handleAddBookmark } from '../Utilities/handleAddBookmark';
-import { useSearchManga } from '../Hooks/useSearchManga';
-import { useAuth } from '../Contexts/AuthContext'; // Import useAuth
+import { AdvancedSearchBar, Pagination } from '../../Components';
+import { handleAddBookmark } from '../../Utilities/handleAddBookmark';
+import { useSearchManga } from '../../Hooks/useSearchManga';
+import { useAuth } from '../../Contexts/AuthContext'; // Import useAuth
+
 import './SearchResultsPage.css'; // Import CSS for styling
-import { Loading } from '../Components/Loading';
+import { Loading } from '../../Components';
 
 const SearchResultItem = ({ manga }) => {
   const { isAuthenticated, userID } = useAuth(); // Get isAuthenticated and userID from AuthContext
@@ -42,21 +43,13 @@ const SearchResultsPage = ({ searchType }) => {
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(true);
 
 
   const regularURL = `https://manganato.com/search/story/${mangaTitle}?page=${page}`;
   const advancedURL = `https://manganato.com/advanced_search?${searchParams.toString()}&page=${page}`;
-
   const searchURL = searchType === 'advanced' ? advancedURL : regularURL;
 
   const { searchResults, totalPages, error } = useSearchManga(searchURL, page);
-
-  useEffect(() => {
-    if (searchResults) {
-      setLoading(false);
-    }
-  }, [searchResults]);
 
   const handlePageChange = (newPage) => {
     setPage(newPage);
@@ -64,18 +57,17 @@ const SearchResultsPage = ({ searchType }) => {
     navigate(`${location.pathname}?${searchParams.toString()}`);
   };
 
-
+  if(!searchResults) {
+    return <Loading />
+  }
+  
   if (error) {
     return <div className="error-message">{error}</div>;
   }
 
   return (
     <div className="search-results-page">
-      {loading ? (
-        <Loading />
-      ) : (
-        <>
-          <AdvancedSearchFilter />
+          <AdvancedSearchBar />
           <div className="search-results">
             {searchResults.map((manga, index) => (
               <SearchResultItem key={index} manga={manga} />
@@ -86,8 +78,6 @@ const SearchResultsPage = ({ searchType }) => {
             totalPages={totalPages}
             onPageChange={handlePageChange}
           />
-        </>
-      )}
     </div>
   );
 };

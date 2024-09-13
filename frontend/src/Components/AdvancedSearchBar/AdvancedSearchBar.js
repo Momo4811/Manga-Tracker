@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './AdvancedSearchFilter.css';
+import { useAdvancedSearchContext } from '../../Contexts/AdvancedSearchContext';
+import './AdvancedSearchBar.css';
+
 
 const mangaGenres = [
   "Action", "Adult", "Adventure", "Comedy", "Cooking", "Doujinshi", "Drama", "Ecchi", "Erotica",
@@ -10,48 +12,48 @@ const mangaGenres = [
   "Shounen ai", "Slice of life", "Smut", "Sports", "Supernatural", "Tragedy", "Webtoons", "Yaoi", "Yuri"
 ];
 
-const mangaGenresIndexes = [2, 3, 4, 6, 7, 9,
-  10, 11, 48, 12, 13, 14,
-  15, 16, 45, 17, 44, 43,
-  19, 20, 21, 22, 24, 25,
-  47, 26, 27, 28, 29, 30,
-  31, 32, 33, 34, 35, 36,
-  37, 38, 40, 41, 39, 42];
+const mangaGenresIndexes = [
+  2, 3, 4, 6, 7, 9, 10,
+  11, 48, 12, 13, 14, 15, 16, 
+  45, 17, 44, 43, 19, 20, 21,
+  22, 24, 25, 47, 26, 27, 28, 
+  29, 30, 31, 32, 33, 34, 35,
+  36, 37, 38, 39, 40, 41, 42
+];
 
 const mangaGenresMap = mangaGenres.reduce((acc, genre, index) => {
   acc[genre] = mangaGenresIndexes[index];
   return acc;
 }, {});
 
-const mangaGenresChecked = mangaGenres.reduce((acc, genre) => {
-  acc[genre] = 'unchecked';
-  return acc;
-}, {});
 
-const AdvancedSearchFilter = () => {
-  const [isContentVisible, setIsContentVisible] = useState(false);
-  const [genres, setGenres] = useState(mangaGenresChecked);
-  const [keyword, setkeyword] = useState('');
-  const [status, setStatus] = useState('');
-  const [sortBy, setSortBy] = useState('');
-  const [keywordType, setKeywordType] = useState('everything');
+const AdvancedSearchBar = () => {
+  const { filters, setFilters, isContentVisible, toggleContentVisibility } = useAdvancedSearchContext();
 
   const navigate = useNavigate();
 
-  const toggleContentVisibility = () => {
-    setIsContentVisible(!isContentVisible);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [name]: value,
+    }));
   };
 
   const handleGenreChange = (genre) => {
-    setGenres((prevGenres) => {
+    setFilters((prevFilters) => {
       let newStatus;
-      if (prevGenres[genre] === 'unchecked') newStatus = 'include';
-      else if (prevGenres[genre] === 'include') newStatus = 'exclude';
+      if (prevFilters.genres[genre] === 'unchecked') newStatus = 'include';
+      else if (prevFilters.genres[genre] === 'include') newStatus = 'exclude';
       else newStatus = 'unchecked';
 
       return {
-        ...prevGenres,
-        [genre]: newStatus,
+        ...prevFilters,
+        genres: {
+          ...prevFilters.genres,
+          [genre]: newStatus,
+        },
       };
     });
   };
@@ -60,9 +62,9 @@ const AdvancedSearchFilter = () => {
     const includedGenres = [];
     const excludedGenres = [];
 
-    for (const genre in genres) {
-      if (genres[genre] === 'include') includedGenres.push(mangaGenresMap[genre]);
-      else if (genres[genre] === 'exclude') excludedGenres.push(mangaGenresMap[genre]);
+    for (const genre in filters.genres) {
+      if (filters.genres[genre] === 'include') includedGenres.push(mangaGenresMap[genre]);
+      else if (filters.genres[genre] === 'exclude') excludedGenres.push(mangaGenresMap[genre]);
     }
 
     return { includedGenres, excludedGenres };
@@ -74,15 +76,19 @@ const AdvancedSearchFilter = () => {
 
     const includedGenresStr = includedGenres.length > 0 ? `&g_i=${includedGenres.join('_')}` : '';
     const excludedGenresStr = excludedGenres.length > 0 ? `&g_e=${excludedGenres.join('_')}` : '';
-    const keywordStr = keyword ? `&keyw=${keyword}` : '';
-    const statusStr = status !== 'all' ? `&sts=${status}` : '';
-    const sortByStr = sortBy ? `&orby=${sortBy}` : '';
-    const keywordTypeStr = keywordType ? `&keyt=${keywordType}` : '';
+    const keywordStr = filters.keyword ? `&keyw=${filters.keyword}` : '';
+    const statusStr = filters.status !== 'all' ? `&sts=${filters.status}` : '';
+    const sortByStr = filters.sortBy ? `&orby=${filters.sortBy}` : '';
+    const keywordTypeStr = filters.keywordType ? `&keyt=${filters.keywordType}` : '';
     const searchURL = includedGenresStr + excludedGenresStr + keywordStr + statusStr + sortByStr + keywordTypeStr;
-    
-    setIsContentVisible(false);
+
+    toggleContentVisibility();
     navigate(`/advanced_search?s=all${searchURL}&page=1`);
   };
+
+  useEffect(() => {
+    
+  }, []);
 
   return (
     <div className="panel-advanced-search-tool">
@@ -92,12 +98,12 @@ const AdvancedSearchFilter = () => {
       </p>
       <div className="advanced-search-tool-content" style={{ display: isContentVisible ? 'block' : 'none' }}>
         <p className="advanced-search-tool-label">Genres:</p>
-        <div className="advanced-search-tool-genres-help"/>
+        <div className="advanced-search-tool-genres-help" />
         <div className="advanced-search-tool-genres-list">
           {mangaGenres.map((genre) => (
             <label key={genre} className="checkbox">
               <button className="checkbox-button" onClick={() => handleGenreChange(genre)}>
-                <i className={`checkbox-icon ${genres[genre]}`} />
+                <i className={`checkbox-icon ${filters.genres[genre]}`} />
                 <span>{genre}</span>
               </button>
             </label>
@@ -108,9 +114,8 @@ const AdvancedSearchFilter = () => {
           <select
             className="advanced-search-tool-orderby-content"
             name="sortBy"
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-          >
+            value={filters.sortBy}
+            onChange={handleInputChange}>
             <option value="latest">Latest updates</option>
             <option value="topview">Top view</option>
             <option value="newest">New manga</option>
@@ -122,9 +127,8 @@ const AdvancedSearchFilter = () => {
           <select
             className="advanced-search-tool-status-content"
             name="status"
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-          >
+            value={filters.status}
+            onChange={handleInputChange}>
             <option value="all">Ongoing and Complete</option>
             <option value="ongoing">Ongoing</option>
             <option value="completed">Completed</option>
@@ -136,9 +140,8 @@ const AdvancedSearchFilter = () => {
           <select
             className="advanced-search-tool-keyword-type"
             name="keywordType"
-            value={keywordType}
-            onChange={(e) => setKeywordType(e.target.value)}
-          >
+            value={filters.keywordType}
+            onChange={handleInputChange}>
             <option value="everything">Everything</option>
             <option value="title">Name title</option>
             <option value="alternative">Alternative name</option>
@@ -151,8 +154,8 @@ const AdvancedSearchFilter = () => {
           className="advanced-search-tool-keyword-content"
           placeholder="Search Manga"
           name="keyword"
-          value={keyword}
-          onChange={(e) => setkeyword(e.target.value)}
+          value={filters.keyword}
+          onChange={handleInputChange}
           autoComplete="off"
           maxLength="100"
         />
@@ -163,4 +166,4 @@ const AdvancedSearchFilter = () => {
   );
 };
 
-export { AdvancedSearchFilter };
+export { AdvancedSearchBar };

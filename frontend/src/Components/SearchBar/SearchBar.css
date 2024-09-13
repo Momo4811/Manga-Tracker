@@ -1,0 +1,40 @@
+/* Navbar Search */
+.navbar-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+/* Search Input */
+.search-input {
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  font-size: 18px;
+  padding-left: 40px;
+  width: 250px;
+}
+
+/* Search Button */
+.search-button {
+  position: absolute;
+  left: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* Search Icon */
+.search-icon {
+  color: #2F2F2F;
+  font-size: 18px;
+}
+
+/* Clear Icon */
+.clear-icon {
+  position: absolute;
+  right: 10px;
+  color: #2F2F2F;
+  cursor: pointer;
+  font-size: 18px;
+}

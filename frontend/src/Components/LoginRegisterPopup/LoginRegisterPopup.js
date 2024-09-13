@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAuth } from '../Contexts/AuthContext';
+import { useAuth } from '../../Contexts/AuthContext';
 import './LoginRegisterPopup.css';
 
 const LoginRegisterPopup = ({ togglePopup }) => {

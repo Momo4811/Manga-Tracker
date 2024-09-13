@@ -1,0 +1,182 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* Search Results */
+.search-results {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+.search-result-item {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-results-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.search-results-content {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.search-results-image {
+  max-width: 200px;
+  border-radius: 8px;
+}
+
+.search-results-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+.search-results-info h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #333;
+}
+
+.search-results-info h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: #666;
+}
+
+.search-results-info p {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.search-results-info strong {
+  font-weight: 700;
+  color: #333;
+}
+
+.search-results-info .latest-chapter {
+  font-size: 18px;
+  color: #007bff;
+  font-weight: 700;
+}
+
+/* Error Message */
+.error-message {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* Search Result Link */
+.search-result-link {
+  text-decoration: none;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.search-result-link:hover {
+  color: #1e90ff;
+}
+
+/* Login Message Container */
+.login-message-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
+}
+
+.login-icon {
+  font-size: 3em;
+  color: #007acc;
+  margin-bottom: 10px;
+}
+
+.login-message {
+  font-size: 1.2em;
+  color: #333;
+}
+
+/* Hide Seen Button Container */
+.hide-seen-button-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 5px;
+}
+
+/* Hide Seen Button */
+.hide-seen-button {
+  width: auto;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #1e90ff, #00bfff);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.hide-seen-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));
+  transition: left 0.3s;
+}
+
+.hide-seen-button:hover::before {
+  left: 100%;
+}
+
+.hide-seen-button:hover {
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.hide-seen-button .fa-arrow-left {
+  margin-right: 8px;
+}

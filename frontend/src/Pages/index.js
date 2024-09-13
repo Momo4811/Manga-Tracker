@@ -1,5 +1,5 @@
-export { HomePage } from './HomePage';
+export { HomePage } from './HomePage/HomePage';
 export { AddBookmark } from './AddBookmark';
-export { ViewBookmarksPage } from './ViewBookmarksPage';
-export { SearchResultsPage } from './SearchResultsPage';
-export { ViewAllChaptersPage } from './ViewAllChaptersPage';
+export { ViewBookmarksPage } from './ViewBookmarksPage/ViewBookmarksPage';
+export { SearchResultsPage } from './SearchResultsPage/SearchResultsPage';
+export { ViewAllChaptersPage } from './ViewAllChaptersPage/ViewAllChaptersPage';

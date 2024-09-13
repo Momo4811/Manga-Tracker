@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../Contexts/AuthContext';
-import { BookmarkItem } from '../Components/BookmarkItem';
-import { useFetchBookmarks } from '../Hooks/useFetchBookmarks';
 import { FaSignInAlt } from 'react-icons/fa';
-import { Loading } from '../Components/Loading';
+
+import { useAuth } from '../../Contexts/AuthContext';
+import { useFetchBookmarks } from '../../Hooks/useFetchBookmarks';
+import { Loading, BookmarkItem } from '../../Components';
 
 import './ViewBookmarksPage.css';
 

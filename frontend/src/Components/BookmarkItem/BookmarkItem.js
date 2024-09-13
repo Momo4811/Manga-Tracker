@@ -1,10 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { handleRemoveBookmark } from '../Utilities/handleRemoveBookmark';
-import { handleContinueReading } from '../Utilities/handleContinueReading';
-import { handleReadNext } from '../Utilities/handleReadNext';
-import { useAuth } from '../Contexts/AuthContext';
+import { handleRemoveBookmark } from '../../Utilities/handleRemoveBookmark';
+import { handleContinueReading } from '../../Utilities/handleContinueReading';
+import { handleReadNext } from '../../Utilities/handleReadNext';
+import { useAuth } from '../../Contexts/AuthContext';
+
+import './BookmarkItem.css';
 
 const BookmarkItem = ({ manga, readingStatus, setrefetchTrigger }) => {
   const navigate = useNavigate();

@@ -1,0 +1,63 @@
+/* General Styling */
+.navbar {
+  background: linear-gradient(45deg, #FF8C00, #FFA500);
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Navbar List */
+.navbar-list {
+  list-style: none;
+  display: flex;
+  gap: 140px;
+  justify-content: center;
+}
+
+.navbar-item {
+  margin: 0;
+}
+
+/* Navbar Link */
+.navbar-link {
+  text-decoration: none;
+  color: #ffffff;
+  padding: 15px 20px;
+  border-radius: 30px;
+  transition: background 0.3s, box-shadow 0.3s;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.navbar-link:hover {
+  background: linear-gradient(45deg, #ffa600, #ff6347);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Auth Buttons */
+.auth-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.auth-button {
+  margin-left: 20px;
+  padding: 15px 20px;
+  background-color: #FFA500;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 23px;
+  font-weight: bold;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.auth-button:hover {
+  background: linear-gradient(45deg, #ffa600, #ff6347);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}

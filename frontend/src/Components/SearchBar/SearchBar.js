@@ -2,10 +2,14 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+
+import { useAdvancedSearchContext } from '../../Contexts/AdvancedSearchContext';
 import './SearchBar.css'; // Assuming you have a CSS file for styling
 
 const SearchBar = ({ searchText, setSearchText }) => {
   const navigate = useNavigate();
+  const { resetFilters, setIsContentVisible } = useAdvancedSearchContext();
+
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -20,12 +24,15 @@ const SearchBar = ({ searchText, setSearchText }) => {
       const customEncode = (str) => {
         return encodeURIComponent(str.trim()).replace(/%20/g, '_');
       };
-      
+
       handleClearSearch();
-      navigate(`/search/${customEncode(searchText)}&page=1`);
+      navigate(`/search/${customEncode(searchText)}`);
     }
   };
+
   const handleClearSearch = () => {
+    resetFilters();
+    setIsContentVisible(false);
     setSearchText('');
   };
 
@@ -34,10 +41,10 @@ const SearchBar = ({ searchText, setSearchText }) => {
       <button className="search-button" onClick={handleSearchSubmit}>
         <FontAwesomeIcon icon={faSearch} className="search-icon" />
       </button>
-      <input 
-        type="text" 
-        className="search-input" 
-        placeholder="Search..." 
+      <input
+        type="text"
+        className="search-input"
+        placeholder="Search..."
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
         onKeyDown={handleKeyDown}

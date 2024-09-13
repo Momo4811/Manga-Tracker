@@ -1,4 +1,4 @@
-/* General styling for the page */
+/* General Styling for the Page */
 .view-all-chapters-page {
   font-family: Arial, sans-serif;
   padding: 20px;
@@ -8,15 +8,18 @@
   max-width: 800px;
   margin: auto;
   width: 100%;
-  padding: 0 20px; /* Add padding to ensure content doesn't touch the edges */
+  padding: 0 20px;
 }
+
+/* Back Button Container */
 .back-button-container {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
   margin-top: 5px;
 }
-/* Styling for the back button */
+
+/* Back Button */
 .back-button {
   width: auto;
   margin-bottom: 20px;
@@ -61,7 +64,7 @@
   margin-right: 8px;
 }
 
-/* Styling for the manga info section */
+/* Manga Info Section */
 .manga-info {
   display: flex;
   flex-direction: column;
@@ -72,8 +75,8 @@
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-left: 5px solid black; /* Add a left border for emphasis */
-  box-sizing: border-box
+  border-left: 5px solid black;
+  box-sizing: border-box;
 }
 
 .manga-info h1 {
@@ -110,11 +113,11 @@
 }
 
 .manga-info-details p span {
-  font-weight: 600; /* Make the detail labels more noticeable */
-  color: #ff9800; /* Use a color that stands out */
+  font-weight: 600;
+  color: #ff9800;
 }
 
-/* Styling for the manga description section */
+/* Manga Description Section */
 .manga-description {
   text-align: left;
   max-width: 800px;
@@ -123,10 +126,10 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-left: 5px solid #ff9800; /* Add a left border for emphasis */
+  border-left: 5px solid #ff9800;
   margin: 20px 0;
   margin-bottom: 90px;
-  box-sizing: border-box
+  box-sizing: border-box;
 }
 
 .manga-description h2 {
@@ -140,10 +143,10 @@
   line-height: 1.6;
 }
 
-/* Styling for the continue reading button */
+/* Continue Reading Button */
 .continue-reading-button {
   background: none;
-  color: #ff9800; /* Orange text */
+  color: #ff9800;
   border: none;
   cursor: pointer;
   text-decoration: none;
@@ -169,16 +172,11 @@
 }
 
 .continue-reading-button:hover {
-  color: #e68900; /* Slightly darker orange on hover */
+  color: #e68900;
   font-weight: bolder;
 }
 
-/* Ensure the parent container is full width */
-.view-all-chapters-page {
-  width: 100%;
-  padding: 0 20px; /* Add padding to ensure content doesn't touch the edges */
-}
-
+/* Chapter Container */
 .chapter-container {
   max-width: 800px;
   margin: 0 auto;
@@ -189,6 +187,7 @@
   margin-bottom: 20px;
 }
 
+/* Chapter List Header */
 .chapter-list-header {
   font-size: 2em;
   margin-bottom: 25px;
@@ -198,23 +197,25 @@
   padding-bottom: 10px;
 }
 
+/* Chapters List */
 .chapters-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
+/* Chapter Item */
 .chapter-item {
   margin-bottom: 15px;
   padding: 15px;
   background-color: #fff;
   border-radius: 10px;
-  border-left: 10px solid #007acc; /* Prominent left border for emphasis */
+  border-left: 10px solid #007acc;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
   display: block;
-  width: 100%; /* Ensure the item takes the full width */
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .chapter-item:last-child {

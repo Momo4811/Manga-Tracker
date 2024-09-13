@@ -4,8 +4,8 @@
     right: 20px;
     width: 50px;
     height: 50px;
-    background-color: #ff9800; /* Orange color */
-    color: #ffffff; /* White color for the arrow */
+    background-color: #ff9800; 
+    color: #ffffff; 
     border: none;
     border-radius: 50%;
     font-size: 24px;
@@ -18,6 +18,6 @@
   }
   
   .scroll-to-top:hover {
-    background-color: #e68900; /* Slightly darker orange on hover */
+    background-color: #e68900; 
     transform: scale(1.1);
   }

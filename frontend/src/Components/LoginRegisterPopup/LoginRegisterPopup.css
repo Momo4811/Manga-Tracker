@@ -1,3 +1,4 @@
+/* Overlay */
 .login-register-popup-overlay {
   position: fixed;
   top: 0;
@@ -8,9 +9,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Ensure the overlay is on top */
+  z-index: 1000;
 }
 
+/* Popup Content */
 .login-register-popup-content {
   background: #fff;
   padding: 20px;
@@ -18,9 +20,10 @@
   width: 300px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
-  z-index: 1001; /* Ensure the content is on top of the overlay */
+  z-index: 1001;
 }
 
+/* Close Button */
 .login-register-close-button {
   position: absolute;
   top: 10px;
@@ -31,6 +34,7 @@
   cursor: pointer;
 }
 
+/* Form */
 .login-register-form {
   display: flex;
   flex-direction: column;
@@ -57,6 +61,7 @@
   background-color: #ffa231;
 }
 
+/* Switch */
 .login-register-switch {
   color: #FF8C00;
   cursor: pointer;

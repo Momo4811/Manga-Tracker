@@ -1,14 +1,15 @@
 # Manga Tracker
 
-Manga Tracker is a web application that helps you track your favorite manga and never miss an update!
+Manga Tracker is a web application that helps you track your favorite manga and never miss an update! Made as a personal project, likely to be adapted to a browser extension in the future
 
 ## Table of Contents
 
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+- [Preview](#preview)
+- [API-Endpoints](#api-endpoints)
+
 
 ## Features
 
@@ -56,6 +57,21 @@ Manga Tracker is a web application that helps you track your favorite manga and 
 3. Bookmark your favorite manga and track their updates.
 
 
+# Preview
+
+### Home Page
+![Home Page](images/home_page.png)
+
+### Search Page
+![Search Page](images/search_page.png)
+
+### Bookmarks Page
+![Manga Details Page](images/manga_details_page.png)
+
+### Manga Details Page
+![Manga Details Page](images/manga_details_page.png)
+
+
 # API Endpoints
 
 ## Authentication
@@ -63,9 +79,12 @@ Manga Tracker is a web application that helps you track your favorite manga and 
 - POST /auth/login - Log in an existing user
 
 ## Bookmarks
-- GET /bookmarks - Get all bookmarks for a user
-- POST /bookmarks - Add a new bookmark
-- PUT /bookmarks/:id - Update a bookmark
+- POST /fetchBookmarks - Fetch bookmarks for a user
+- POST /addBookmark - Add a new bookmark
+- DELETE /deleteBookmark - Delete a bookmark
+- PUT /readChapter - Read + update next chapter 
+- POST /viewChapters - View chapters of a manga
+- PUT /updateLastRead - Update the last read chapter
 
 ## Search
 - POST /search/extract - Search for manga series
@@ -73,5 +92,3 @@ Manga Tracker is a web application that helps you track your favorite manga and 
 ## User
 - GET /user/fetchUserID - Fetch user ID
 
-## License
-This project is licensed under the MIT License.
