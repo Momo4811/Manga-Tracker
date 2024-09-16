@@ -31,4 +31,5 @@ const findMangaURLS = async (searchURL) => {
   return mangaURLS;
 };
 
+
 module.exports = { fetchURL, findMangaURLS };

@@ -24,4 +24,12 @@ const extractTotalPages = async(searchURL) => {
   return lastPageLink ? parseInt(lastPageLink.match(/page=(\d+)/)[1], 10) : 1;
 };
 
-module.exports = { fetchAndParseMangaPage, extractChapters, extractTotalPages };
+const extractMangaPanels = async (mangaURL) => {
+  const response = await fetchURL(mangaURL);
+  const $ = cheerio.load(response.data);
+
+  const panels = $('div.container-chapter-reader img').map((i, el) => $(el).attr('src')).get();
+  return panels;
+};
+
+module.exports = { fetchAndParseMangaPage, extractChapters, extractTotalPages, extractMangaPanels };
