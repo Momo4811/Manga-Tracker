@@ -1,6 +1,6 @@
 # Manga Tracker
 
-Manga Tracker is a web application that helps you track your favorite manga and never miss an update! Made as a personal project, likely to be adapted to a browser extension in the future.
+Manga Tracker is a web application that helps you track your favorite manga and never miss an update! Made as a personal project, likely to be adapted to a browser extension in the future. Reading manga from the site is also possible!
 
 ## Table of Contents
 
